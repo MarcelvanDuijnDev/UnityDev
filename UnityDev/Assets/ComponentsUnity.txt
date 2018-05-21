@@ -1,0 +1,102 @@
+[Mesh]
+0 = MeshFilter
+1 = TextMesh
+2 = MeshRenderer
+3 = SkinnedMeshRenderer
+[Effects]
+4 = ParticleSystem
+5 = TrailRenderer
+6 = LineRenderer
+7 = LensFlare
+8 = Halo
+9 = Projector
+10 = LegacyParticles
+[Physics]
+11 = Rigidbody
+12 = CharacterController
+13 = BoxCollider
+14 = SphereCollider
+15 = CapsuleCollider
+16 = MeshCollider
+17 = WheelCollider
+18 = TerrainCollider
+19 = Cloth
+20 = HingeJoint
+21 = FixedJoint
+22 = SpringJoint
+23 = CharacterJoint
+24 = ConfigurableJoint
+25 = ConstantForce
+[Physics2D]
+26 = Rigidbody2D
+27 = BoxCollider2D
+28 = CircleCollider2D
+29 = EdgeCollider2D
+30 = PolygonCollider2D
+31 = CapsuleCollider2D
+32 = CompositeCollider2D
+33 = DistanceJoint2D
+34 = FixedJoint2D
+35 = FrictionJoint2D
+36 = HingeJoint2D
+37 = RelativeJoint2D
+38 = SliderJoint2D
+39 = SpringJoint2D
+40 = TargetJoint2D
+41 = WheelJoint2D
+42 = AreaEffector2D
+43 = BuoyancyEffector2D
+44 = PointEffector2D
+45 = PlatformEffector2D
+46 = SurfaceEffector2D
+47 = ConstantForce2D
+[Navigation]
+48 = NavMeshAgent
+49 = OffMeshLink
+50 = NavMeshObstacle
+[Audio]
+51 = AudioListener
+52 = AudioSource
+53 = AudioReverbZone
+54 = AudioLowPassFilter
+55 = AudioHighPassFilter
+56 = AudioEchoFilter
+57 = AudioDistortionFilter
+58 = AudioReverbFilter
+59 = AudioChorusFilter
+60 = AudioSpatializer
+[Video]
+61 = VideoPlayer
+[Rendering]
+62 = Camera
+63 = Skybox
+64 = FlareLayer
+65 = GUILayer
+66 = Light
+67 = LightProbeGroup
+68 = LightProbeProxyVolume
+69 = ReflectionProbe
+70 = OcclusionArea
+71 = OcclusionPortal
+72 = LODGroup
+73 = SpriteRenderer
+74 = SortingGroup
+75 = CanvasRenderer
+76 = GUITexture
+77 = GUIText
+[Tilemap]
+78 = Tilemap
+79 = TilemapRendering
+80 = TilemapCollider2D
+[Layout]
+81 = RectTransform
+82 = Canvas
+83 = CanvasGroup
+84 = CanvasScaler
+85 = LayoutElement
+86 = ContentSizeFitter
+87 = AspectRatioFitter
+88 = HorizontalLayoutGroup
+89 = VerticalLayoutGroup
+90 = GridLayoutGroup
+[]
