@@ -4484,7 +4484,7 @@ Transform:
   - {fileID: 1856856487}
   - {fileID: 52139885}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &140499958
 GameObject:
@@ -4549,7 +4549,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &276992236
 GameObject:
@@ -15628,7 +15628,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -27.713001, y: -23.317001, z: -119.600006}
 --- !u!65 &787476247
 BoxCollider:
@@ -20995,7 +20995,7 @@ Transform:
   m_LocalScale: {x: 2.3640172, y: 4.167089, z: 2.3640175}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1090270411
 Mesh:
@@ -21155,12 +21155,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87b7d33cb19a56c498d400674674e745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  formula: 3+13+123=+
-  formulaConvert: []
+  formula: "\u221A52+\u221A23="
   scripts: []
   calculateFormula: 
   formulaOutput: 0
-  checkAmount:
+  formulaConvert1: []
+  formulaConvert2:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  formulaConvert3:
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -21182,7 +21203,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &1183516376
 ParticleSystemRenderer:
@@ -21606,7 +21627,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4949685347996466, guid: c9338281b733e304b94707c81d781b1e, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c9338281b733e304b94707c81d781b1e, type: 2}
@@ -21648,7 +21669,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4504734605838040, guid: 0aa239cc0bd5ca04bbd99f441a5d754a, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114856820367433770, guid: 0aa239cc0bd5ca04bbd99f441a5d754a,
         type: 2}
@@ -21661,7 +21682,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1625427900928116, guid: 0aa239cc0bd5ca04bbd99f441a5d754a, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 54110387668594174, guid: 0aa239cc0bd5ca04bbd99f441a5d754a, type: 2}
@@ -23695,7 +23716,7 @@ Transform:
   m_LocalScale: {x: 1.1586102, y: 1.1586103, z: 1.1586103}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2064765543
 BoxCollider:
@@ -23792,7 +23813,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2110123374
 Rigidbody:

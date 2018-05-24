@@ -156,7 +156,7 @@ public class Unity_Assistent : EditorWindow
         {
             if (string.IsNullOrEmpty(searchComponent) || searchComponents[i].ToLower().Contains(searchComponent.ToLower()))
             {
-                if (searchComponentsTag[i] == tagName)
+                if (searchComponentsTag[i] == tagName && selectedObject != null)
                 {
                     GetComponents(searchComponents[i]);
                 }
@@ -173,7 +173,7 @@ public class Unity_Assistent : EditorWindow
             SetFilter();
         }
         selectedObject = Selection.activeGameObject;
-        if (selectedObject != checkSelectedGameObject)
+        if (selectedObject != checkSelectedGameObject && selectedObject != null)
         {
             objectName = selectedObject.transform.name;
             transformPosition = selectedObject.transform.position;
@@ -181,10 +181,13 @@ public class Unity_Assistent : EditorWindow
             transformSize = selectedObject.transform.localScale;
             checkSelectedGameObject = selectedObject;
         }
-        selectedObject.transform.name = objectName;
-        selectedObject.transform.position = new Vector3(transformPosition.x,transformPosition.y,transformPosition.z);
-        selectedObject.transform.eulerAngles = new Vector3(transformRotation.x, transformRotation.y, transformRotation.z);
-        selectedObject.transform.localScale = new Vector3(transformSize.x, transformSize.y, transformSize.z);
+        if (selectedObject != null)
+        {
+            selectedObject.transform.name = objectName;
+            selectedObject.transform.position = new Vector3(transformPosition.x, transformPosition.y, transformPosition.z);
+            selectedObject.transform.eulerAngles = new Vector3(transformRotation.x, transformRotation.y, transformRotation.z);
+            selectedObject.transform.localScale = new Vector3(transformSize.x, transformSize.y, transformSize.z);
+        }
     }
 
     void GetComponents(string name)

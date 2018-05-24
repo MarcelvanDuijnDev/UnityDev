@@ -6,7 +6,6 @@ using UnityEngine;
 public class MathConverter : MonoBehaviour
 {
     public string formula;
-    public string[] formulaConvert;
 
     public MonoScript[] scripts;
     int scriptAmount;
@@ -17,93 +16,135 @@ public class MathConverter : MonoBehaviour
     [Header("Output Formula")]
     public float formulaOutput;
 
-    public string[] checkAmount;
+    public string[] formulaConvert1, formulaConvert2, formulaConvert3;
 
     bool comma;
 
-    void Start ()
+    void Start()
     {
-        formulaConvert = new string[formula.Length];
+        formulaConvert1 = new string[formula.Length];
         CalculateFormula();
-        formulaOutput = Mathf.Sqrt(100);
+        formulaOutput = 10 * Mathf.PI / 2 + Mathf.Sqrt(100) + 80 * Mathf.PI;
 
-        Object[] data = AssetDatabase.LoadAllAssetsAtPath("Assets");
+        Debug.Log(Mathf.Tan(100));
+    }
 
-        foreach (Object o in data)
-        {
-            Debug.Log(o);
-        }
-	}
-	
-	void Update () 
+    void Update()
     {
-		
-	}
+
+    }
 
     public void CalculateFormula()
     {
         for (int i = 0; i < formula.Length; i++)
         {
-            formulaConvert[i] = formula[i].ToString();
+            formulaConvert1[i] = formula[i].ToString();
         }
-        Formula1();
+        GetNumbers1();
+        GetNumbers2();
     }
 
-    void Formula1()
+    void GetNumbers1()
     {
         int check = 0;
-        for (int i = 0; i < formulaConvert.Length; i++)
+        comma = false;
+        for (int i = 0; i < formulaConvert1.Length; i++)
         {
-            if (formulaConvert[i] == "+"){checkAmount[check] += "+"; check += 1;}
-            if (formulaConvert[i] == "="){checkAmount[check] += ""; check += 1;}
+            if (formulaConvert1[i] == "+") { formulaConvert2[check] += "+"; check += 1; }
+            if (formulaConvert1[i] == "*") { formulaConvert2[check] += "*"; check += 1; }
+            if (formulaConvert1[i] == "/") { formulaConvert2[check] += "/"; check += 1; }
+            if (formulaConvert1[i] == "=") { formulaConvert2[check] += ""; check += 1; }
+            if (formulaConvert1[i] == "√") { formulaConvert2[check] += "√"; check += 1; }
+            if (formulaConvert1[i] == "π") { formulaConvert2[check] += "π"; check += 1; }
 
-            if (formulaConvert[i] == "0" || formulaConvert[i] == "1" || formulaConvert[i] == "2" || formulaConvert[i] == "3" || formulaConvert[i] == "4" || formulaConvert[i] == "5" || formulaConvert[i] == "6" || formulaConvert[i] == "7" || formulaConvert[i] == "8" || formulaConvert[i] == "9")
+            if(formulaConvert1[i] == "t" && formulaConvert1[i + 1] == "a" && formulaConvert1[i + 2] == "t")
+            {
+                formulaConvert2[check] += ".";
+            }
+
+            if (formulaConvert1[i] == "0" || formulaConvert1[i] == "1" || formulaConvert1[i] == "2" || formulaConvert1[i] == "3" || formulaConvert1[i] == "4" || formulaConvert1[i] == "5" || formulaConvert1[i] == "6" || formulaConvert1[i] == "7" || formulaConvert1[i] == "8" || formulaConvert1[i] == "9")
             {
                 string addToFormula = "";
-                for (int o = i; o < formulaConvert.Length; o++) 
+                for (int o = i; o < formulaConvert1.Length; o++)
                 {
-                    if (formulaConvert[o] == "0" || formulaConvert[o] == "1" || formulaConvert[o] == "2" || formulaConvert[o] == "3" || formulaConvert[o] == "4" || formulaConvert[o] == "5" || formulaConvert[o] == "6" || formulaConvert[o] == "7" || formulaConvert[o] == "8" || formulaConvert[o] == "9")
+                    if (formulaConvert1[o] == "," || formulaConvert1[o] == "0" || formulaConvert1[o] == "1" || formulaConvert1[o] == "2" || formulaConvert1[o] == "3" || formulaConvert1[o] == "4" || formulaConvert1[o] == "5" || formulaConvert1[o] == "6" || formulaConvert1[o] == "7" || formulaConvert1[o] == "8" || formulaConvert1[o] == "9")
                     {
-                        addToFormula += formulaConvert[o].ToString();
-                        checkAmount[check] += formulaConvert[o].ToString();
+                        if (formulaConvert1[o] != ",")
+                        {
+                            addToFormula += formulaConvert1[o].ToString();
+                            formulaConvert2[check] += formulaConvert1[o].ToString();
+                        }
+                        else
+                        {
+                            formulaConvert2[check] += ".";
+                            comma = true;
+                        }
                     }
                     else
                     {
+                        if(comma)
+                        {
+                            formulaConvert2[check] += "f";
+                            comma = false;
+                        }
                         i += o - i - 1;
                         check += 1;
-                        calculateFormula += addToFormula;
                         break;
                     }
                 }
             }
-        }    
-    }
 
-    void ConvertFormulaSigns()
-    {
-        for (int i = 0; i < formulaConvert.Length; i++)
-        {
-            if (formulaConvert[i] == "0"){calculateFormula += "0";}
-            if (formulaConvert[i] == "1"){calculateFormula += "1";}
-            if (formulaConvert[i] == "2"){calculateFormula += "2";}
-            if (formulaConvert[i] == "3"){calculateFormula += "3";}
-            if (formulaConvert[i] == "4"){calculateFormula += "4";}
-            if (formulaConvert[i] == "5"){calculateFormula += "5";}
-            if (formulaConvert[i] == "6"){calculateFormula += "6";}
-            if (formulaConvert[i] == "7"){calculateFormula += "7";}
-            if (formulaConvert[i] == "8"){calculateFormula += "8";}
-            if (formulaConvert[i] == "9"){calculateFormula += "9";}
-            if (formulaConvert[i] == "+"){calculateFormula += "+";}
-            if (formulaConvert[i] == "*"){calculateFormula += "*";}
-            if (formulaConvert[i] == "x"){calculateFormula += "*";}
-            if (formulaConvert[i] == "."){calculateFormula += "*";}
-            if (formulaConvert[i] == "%"){calculateFormula += "%";}
-            if (formulaConvert[i] == "^"){calculateFormula += "^";}
-            if (formulaConvert[i] == "÷"){calculateFormula += "÷";}
-            if (formulaConvert[i] == "/"){calculateFormula += "/";}
-            if (formulaConvert[i] == ","){calculateFormula += ".";}
-            // if (formulaConvert[i] == "√"){calculateFormula += "√";} Mathf.Sqrt()
         }
     }
+
+    void GetNumbers2()
+    {
+        for (int i = 0; i < formulaConvert2.Length; i++)
+        {
+            if (formulaConvert2[i] == "+") { formulaConvert3[i] += "+";}
+            if (formulaConvert2[i] == "*") { formulaConvert3[i] += "*";}
+            if (formulaConvert2[i] == "/") { formulaConvert3[i] += "/";}
+            if (formulaConvert2[i] == "=") { formulaConvert3[i] += "";}
+
+            string addToFormula1 = "";
+            if (formulaConvert2[i] == "π")
+            {
+                formulaConvert3[i] += "Mathf.PI";
+            }
+            if (formulaConvert2[i] == "√")
+            {
+                formulaConvert3[i] += "Mathf.Sqrt(";
+                for (int o = i + 1; o < formulaConvert2.Length; o++)
+                {
+                    string addToFormula2 = "";
+                    if (formulaConvert2[o].Contains(".") || formulaConvert2[o].Contains("0") || formulaConvert2[o].Contains("1") || formulaConvert2[o].Contains("2") || formulaConvert2[o].Contains("3") || formulaConvert2[o].Contains("4") || formulaConvert2[o].Contains("5") || formulaConvert2[o].Contains("6") || formulaConvert2[o].Contains("7") || formulaConvert2[o].Contains("8") || formulaConvert2[o].Contains("9"))
+                    {
+                        addToFormula2 += formulaConvert2[o].ToString();
+                        formulaConvert3[i] += formulaConvert2[o].ToString();
+                    }
+                    else
+                    {
+                        formulaConvert3[i] += ")";
+                        i += 1;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                if (formulaConvert2[i].Contains(".") || formulaConvert2[i].Contains("0") || formulaConvert2[i].Contains("1") || formulaConvert2[i].Contains("2") || formulaConvert2[i].Contains("3") || formulaConvert2[i].Contains("4") || formulaConvert2[i].Contains("5") || formulaConvert2[i].Contains("6") || formulaConvert2[i].Contains("7") || formulaConvert2[i].Contains("8") || formulaConvert2[i].Contains("9"))
+                {
+                    addToFormula1 += formulaConvert2[i].ToString();
+                    formulaConvert3[i] += formulaConvert2[i].ToString();
+                }
+            }
+        }
+        for (int i = 0; i < formulaConvert3.Length; i++)
+        {
+            calculateFormula += formulaConvert3[i];
+        }
+
+    }
 }
-    
+
+
