@@ -21155,7 +21155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87b7d33cb19a56c498d400674674e745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  formula: "\u221A52+\u221A23="
+  formula: "\u221A51+tan65/\u03C0-cos54*sin6="
   scripts: []
   calculateFormula: 
   formulaOutput: 0
