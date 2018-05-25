@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Engine3D_PlayerController_FP : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 
+    //Health
+    [SerializeField]private float health, armor;
+    [SerializeField]private float maxHealth, maxArmor;
     //Movement
     [SerializeField]private float normalSpeed, sprintSpeed;
-    [SerializeField]private float jumpSpeed;
+    [SerializeField]
+    private float jumpSpeed;
     [SerializeField]private float gravity;
     [SerializeField]private GameObject fps_camera, thirdperson_Camera;
     private bool camera_Perspective;
@@ -85,6 +89,71 @@ public class Engine3D_PlayerController_FP : MonoBehaviour {
         else
         {
             speed = normalSpeed;
+        }
+    }
+
+    public void SetValues(float setPlayerSpeed, float setSprintSpeed)
+    {
+        normalSpeed = setPlayerSpeed;
+        sprintSpeed = setSprintSpeed;
+    }
+
+    public void DoDamage(float damageAmount)
+    {
+        float damage = 0;
+        if(armor > damageAmount)
+        {
+            armor -= damageAmount;
+        }
+        else
+        {
+            damage = damageAmount - armor;
+            health -= damage;
+            armor = 0;
+        }
+        if(health <= 0)
+        {
+            Debug.Log("dead");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "PickupAmmo")
+        {
+            float amount = other.gameObject.GetComponent<Pickup>().pickupAmount;
+        }
+        if(other.gameObject.tag == "PickupHealh")
+        {
+            if (health <= maxHealth)
+            {
+                float amount = other.gameObject.GetComponent<Pickup>().pickupAmount;
+                if (health > maxHealth)
+                {
+                    health = maxHealth;
+                }
+                else
+                {
+                    health += amount;
+                }
+                other.gameObject.SetActive(false);
+            }
+        }
+        if(other.gameObject.tag == "PickupArmor")
+        {
+            if (armor <= maxArmor)
+            {
+                float amount = other.gameObject.GetComponent<Pickup>().pickupAmount;
+                if(amount > maxArmor)
+                {
+                    armor = maxArmor;
+                }
+                else
+                {
+                    armor += amount;
+                }
+                other.gameObject.SetActive(false);
+            }
         }
     }
 }

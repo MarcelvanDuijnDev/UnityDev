@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Engine3D_Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     [SerializeField]private GameObject particleImpact;
     float timer = 10;
