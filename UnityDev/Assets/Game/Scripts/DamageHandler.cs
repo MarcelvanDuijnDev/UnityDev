@@ -7,21 +7,24 @@ public class DamageHandler : MonoBehaviour
     [SerializeField]
     private AddBodyPart[] addBodyPartScript;
     public bool dead;
-
+    public string switchStateString;
 
     private void Update()
     {
         float checkIfDead = 0;
+        string checkString = "";
         for (int i = 0; i < addBodyPartScript.Length; i++)
         {
             if(addBodyPartScript[i].health <= 0)
             {
+                checkString += addBodyPartScript[i].bodyPartName;
                 checkIfDead += addBodyPartScript[i].priority;
             }
+            switchStateString = checkString;
         }
         if(checkIfDead >= 100)
         {
-            dead = true;
+            //dead = true;
         }
     }
 
@@ -57,6 +60,10 @@ public class DamageHandler : MonoBehaviour
                         }
                     }
                 }
+                if (addBodyPartScript[i].bodyPart.GetComponent<Rigidbody>() == null)
+                {
+                    addBodyPartScript[i].bodyPart.AddComponent<Rigidbody>();
+                }
             }
         }
     }
@@ -66,6 +73,7 @@ public class DamageHandler : MonoBehaviour
 public struct AddBodyPart
 {
     public string info;
+    public string bodyPartName;
     public GameObject bodyPart;
     public float health;
     public float armor;

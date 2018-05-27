@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
     [SerializeField]private int maxAmmo, maxClipSize;
     [SerializeField]private float range;
     [SerializeField]private float damageAmount;
-    [SerializeField]private float extraDamage = 1;
+    [SerializeField]private float extraDamage;
 
     private void Start()
     {
@@ -29,10 +29,10 @@ public class Weapon : MonoBehaviour
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
                     try
                     {
-                        if (hit.transform.parent.GetComponent<DamageHandler>() != null)
+                        if (hit.transform.root.GetComponent<DamageHandler>() != null)
                         {
-                            float damageExtra = extraDamage + 1;
-                            hit.transform.parent.GetComponent<DamageHandler>().DoDamage(damageAmount * damageExtra, hit.transform.name);
+                            float damageExtra = extraDamage;
+                            hit.transform.root.GetComponent<DamageHandler>().DoDamage(damageAmount * damageExtra, hit.transform.name);
                         }
                     }
                     catch { }

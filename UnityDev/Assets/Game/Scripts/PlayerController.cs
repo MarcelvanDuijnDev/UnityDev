@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     //Health
-    [SerializeField]private float health, armor;
+    public float health, armor;
     [SerializeField]private float maxHealth, maxArmor;
     //Movement
     [SerializeField]private float normalSpeed, sprintSpeed;

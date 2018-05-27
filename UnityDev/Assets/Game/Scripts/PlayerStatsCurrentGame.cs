@@ -9,9 +9,11 @@ public class PlayerStatsCurrentGame : MonoBehaviour
     private int money;
     private int kills;
     private PlayerStats playerScript;
+    [SerializeField]private Text healthText, armorText;
     [SerializeField]private Text moneyText, killsText;
-    [SerializeField]private Text playerPerkLevel;
+    [SerializeField]private Text playerPerkLevel, playerCurrentPerkName;
     [SerializeField]private Text weaponName, weaponAmmo, weaponClip;
+    [SerializeField]private Text waveText, waveAmountText;
     [SerializeField]private GameObject player;
     [SerializeField]private PlayerController playerControllerScript;
     [SerializeField]private Weapon weaponScript;
@@ -19,19 +21,24 @@ public class PlayerStatsCurrentGame : MonoBehaviour
     void Start()
     {
         playerScript = this.gameObject.GetComponent<PlayerStats>();
-        SetPlayerPerk();
     }
 	
 	void Update ()
     {
-        moneyText.text = "Money: " + money.ToString();
+        moneyText.text = "$: " + money.ToString();
         killsText.text = "Kills: " + kills.ToString();
         playerPerkLevel.text = "PerkLevel: " + playerScript.perkLevel[currentPerk].ToString();
+        playerCurrentPerkName.text = playerScript.currentPerkName.ToString();
 
         weaponName.text = "" + weaponScript.nameGun;
         weaponAmmo.text = "Ammo: " + weaponScript.currentAmmo;
         weaponClip.text = "Clip: " + weaponScript.currentClip;
 
+        healthText.text = "+ " + playerControllerScript.health.ToString();
+        armorText.text = "[] " + playerControllerScript.armor.ToString();
+
+        waveText.text = "0" + "/" + "7";
+        waveAmountText.text = "0";
     }
 
     public void AddMoney(int moneyAmount)
@@ -52,12 +59,12 @@ public class PlayerStatsCurrentGame : MonoBehaviour
 
     public void SetPlayerPerk()
     {
-        float extraDamage = 0;
+        float extraDamage = 1;
         float normalSpeed = 5;
         float sprintSpeed = 8;
         if(currentPerk == 0)
         {
-            extraDamage += 0.1f * playerScript.perkLevel[currentPerk];
+            extraDamage += 0.0f * playerScript.perkLevel[currentPerk];
             normalSpeed += 0.05f * playerScript.perkLevel[currentPerk];
             sprintSpeed += 0.06f * playerScript.perkLevel[currentPerk];
             playerControllerScript.SetValues(normalSpeed,sprintSpeed);

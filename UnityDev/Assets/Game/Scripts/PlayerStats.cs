@@ -11,6 +11,7 @@ public class PlayerStats : MonoBehaviour
     private float[] perkXPCurrent;
     public int[] perkLevel;
     [SerializeField]private float[] xpNeeded;
+    [HideInInspector]public string currentPerkName;
 
     private void Start()
     {
@@ -43,6 +44,8 @@ public class PlayerStats : MonoBehaviour
         {
             perkXPCurrent[currentPerk] += 100;
         }
+
+        currentPerkName = JsonDataScript.perks[currentPerk];
     }
 
     private void Save()
@@ -69,6 +72,7 @@ public class PlayerStats : MonoBehaviour
             perkLevel[i] = JsonDataScript.perkLevel[i];
         }
         totalKills = JsonDataScript.totalKills;
+        this.gameObject.GetComponent<PlayerStatsCurrentGame>().SetPlayerPerk();
     }
 
     public void AddXP(int perk, float xpAmount)
