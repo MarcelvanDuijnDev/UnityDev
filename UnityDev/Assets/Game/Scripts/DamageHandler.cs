@@ -8,6 +8,7 @@ public class DamageHandler : MonoBehaviour
     private AddBodyPart[] addBodyPartScript;
     public bool dead;
     public string switchStateString;
+    public float damageMulti;
 
     private void Update()
     {
@@ -31,20 +32,21 @@ public class DamageHandler : MonoBehaviour
     public void DoDamage(float damageAmount, string objectName)
     {
         float damage = 0;
-        Debug.Log("Damage: " + damageAmount);
+        float damageAmountCalculated = damageAmount * damageMulti;
+        Debug.Log("Damage: " + damageAmount * damageMulti);
         for (int i = 0; i < addBodyPartScript.Length; i++)
         {
-            if(addBodyPartScript[i].bodyPart.transform.name == objectName)
+            if (addBodyPartScript[i].bodyPart.transform.name == objectName)
             {
-                if (damageAmount > addBodyPartScript[i].armor)
+                if (damageAmountCalculated > addBodyPartScript[i].armor)
                 {
-                    damage = damageAmount - addBodyPartScript[i].armor;
+                    damage = damageAmountCalculated - addBodyPartScript[i].armor;
                     addBodyPartScript[i].armor = 0;
                     addBodyPartScript[i].health -= damage;
                 }
                 else
                 {
-                    addBodyPartScript[i].armor -= damageAmount;
+                    addBodyPartScript[i].armor -= damageAmountCalculated;
                 }
             }
             if (addBodyPartScript[i].health <= 0)
