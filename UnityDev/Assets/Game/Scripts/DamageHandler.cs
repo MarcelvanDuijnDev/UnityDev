@@ -9,6 +9,7 @@ public class DamageHandler : MonoBehaviour
     public bool dead;
     public string switchStateString;
     public float damageMulti;
+    private float[] healthReset;
 
     private void Update()
     {
@@ -25,15 +26,24 @@ public class DamageHandler : MonoBehaviour
         }
         if(checkIfDead >= 100)
         {
-            //dead = true;
+            dead = true;
+        }
+    }
+
+    void OnAwake()
+    {
+        healthReset = new float[addBodyPartScript.Length];
+        for (int i = 0; i < addBodyPartScript.Length; i++)
+        {
+            healthReset[i] = addBodyPartScript[i].health;
         }
     }
 
     public void DoDamage(float damageAmount, string objectName)
     {
         float damage = 0;
-        float damageAmountCalculated = damageAmount * damageMulti;
-        Debug.Log("Damage: " + damageAmount * damageMulti);
+        float damageAmountCalculated = damageAmount;// * damageMulti;
+        Debug.Log(damageAmountCalculated);
         for (int i = 0; i < addBodyPartScript.Length; i++)
         {
             if (addBodyPartScript[i].bodyPart.transform.name == objectName)

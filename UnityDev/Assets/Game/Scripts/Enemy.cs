@@ -30,13 +30,13 @@ public class Enemy : MonoBehaviour
 
     void Dead()
     {
-        this.gameObject.AddComponent<Rigidbody>();
         GameObject systemObj = GameObject.Find("System");
         PlayerStatsCurrentGame playerScript = systemObj.GetComponent<PlayerStatsCurrentGame>();
         playerScript.AddMoney(100);
         playerScript.AddKill();
         playerScript.AddXP(100);
         deadActivate = true;
+        this.gameObject.SetActive(false);
     }
 
     void HandleAnimations()

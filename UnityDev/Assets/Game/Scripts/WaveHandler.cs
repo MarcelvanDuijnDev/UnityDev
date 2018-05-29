@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class WaveHandler : MonoBehaviour
 {
+    [Header("Object Pool")]
+    ObjectPool_Script objectPoolScript;
+    public GameObject objectPool;
+
+    [Header("Options")]
     public int waveAmount;
     [SerializeField]private GameObject[] enemyPrefabs;
     [SerializeField]private Transform[] spawnPositions;
@@ -23,6 +28,8 @@ public class WaveHandler : MonoBehaviour
 
     private void Start()
     {
+        objectPoolScript = (ObjectPool_Script)objectPool.GetComponent(typeof(ObjectPool_Script));
+
         currentWave = 1;
         waveActive = true;
         cooldownTimerReset = cooldownTimer;
@@ -63,6 +70,15 @@ public class WaveHandler : MonoBehaviour
     void SpawnEnemy(int enemyID)
     {
         int spawnPos = Random.Range(0, spawnPositions.Length);
-        Instantiate(enemyPrefabs[enemyID], spawnPositions[spawnPos].transform);
+        for (int i = 0; i < objectPoolScript.objects.Count; i++)
+        {
+            if (!objectPoolScript.objects[i].activeInHierarchy)
+            {
+                objectPoolScript.objects[i].transform.position = spawnPositions[spawnPos].position;
+                objectPoolScript.objects[i].transform.rotation = transform.rotation;
+                objectPoolScript.objects[i].SetActive(true);
+                break;
+            }
+        }
     }
 }

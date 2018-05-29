@@ -1,16 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
-public class EnemyMovementTest : MonoBehaviour {
+public class EnemyMovementTest : MonoBehaviour 
+{
+    [SerializeField]private float m_Speed;
+    private GameObject target;
+    private NavMeshAgent agent;
 
-	// Use this for initialization
-	void Start () {
-		
+
+	void Start () 
+    {
+        agent = this.gameObject.GetComponent<NavMeshAgent>();
+        target = GameObject.Find("Player");
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void Update () 
+    {
+        agent.destination = target.transform.position;
 	}
 }
