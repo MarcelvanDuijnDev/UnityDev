@@ -23219,6 +23219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ccafb11dcbba64dbb5b27dc75ae49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastPerk: 0
   perkLevel: 
   xpNeeded: []
   currentPerkName: 
@@ -23252,6 +23253,7 @@ MonoBehaviour:
   spawnPositions:
   - {fileID: 505622204}
   cooldownTimer: 5
+  currentWave: 0
   timeScale: 5
   maxEnemyAlive: 0
   enemyAmount: 0a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a000000
@@ -26756,13 +26758,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1183516379}
-        m_MethodName: LoadScene
+      - m_Target: {fileID: 1183516377}
+        m_MethodName: SetCurrentPerk
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

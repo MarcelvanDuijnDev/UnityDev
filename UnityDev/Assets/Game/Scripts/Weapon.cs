@@ -5,6 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour 
 {
     public string nameGun;
+    public string type;
     public int currentAmmo, currentClip;
     [SerializeField]private int maxAmmo, maxClipSize;
     [SerializeField]private float range;

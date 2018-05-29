@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     private JsonSaveGameSettings JsonDataScript = new JsonSaveGameSettings();
+    [HideInInspector]
+    public int lastPerk;
     private int currentPerk;
     private int totalKills;
     private float[] perkXPCurrent;
@@ -50,6 +52,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Save()
     {
+        JsonDataScript.lastPerk = currentPerk;
         JsonDataScript.totalKills = totalKills;
         for (int i = 0; i < perkXPCurrent.Length; i++)
         {
@@ -73,11 +76,17 @@ public class PlayerStats : MonoBehaviour
         }
         totalKills = JsonDataScript.totalKills;
         this.gameObject.GetComponent<PlayerStatsCurrentGame>().SetPlayerPerk();
+        lastPerk = JsonDataScript.lastPerk;
     }
 
     public void AddXP(int perk, float xpAmount)
     {
         perkXPCurrent[perk] += xpAmount;
+    }
+
+    public void SetCurrentPerk(int perkIndex)
+    {
+        currentPerk = perkIndex;
     }
 
     public void AddKill()
@@ -88,6 +97,7 @@ public class PlayerStats : MonoBehaviour
 
 public class JsonSaveGameSettings
 {
+    public int lastPerk;
     public string[] perks;
     public int[] perkLevel;
     public float[] perkXP;

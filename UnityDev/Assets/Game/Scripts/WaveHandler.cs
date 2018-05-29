@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class WaveHandler : MonoBehaviour
 {
-    [SerializeField]private int waveAmount;
+    public int waveAmount;
     [SerializeField]private GameObject[] enemyPrefabs;
     [SerializeField]private Transform[] spawnPositions;
 
     //Cooldown
     [SerializeField]private float cooldownTimer;
     private float cooldownTimerReset;
-    private int currentWave;
+    [HideInInspector]public int currentWave;
     private float timer;
     private bool cooldown;
     private bool waveActive;
@@ -23,6 +23,7 @@ public class WaveHandler : MonoBehaviour
 
     private void Start()
     {
+        currentWave = 1;
         waveActive = true;
         cooldownTimerReset = cooldownTimer;
     }
@@ -39,12 +40,12 @@ public class WaveHandler : MonoBehaviour
         }
         if(waveActive)
         {
-            if (enemyAmount[currentWave] > 0)
+            if (enemyAmount[currentWave - 1] > 0)
             {
                 timer -= 1 * Time.deltaTime;
                 if (timer <= 0)
                 {
-                    enemyAmount[currentWave] -= 1;
+                    enemyAmount[currentWave - 1] -= 1;
                     SpawnEnemy(0);
                     timer += Random.Range(0, timeScale);
                 }
