@@ -26,6 +26,9 @@ public class WaveHandler : MonoBehaviour
     [SerializeField]private int[] enemyAmount;
     public int activeEnemys;
 
+    private int killsNeeded;
+    private bool killsNeededSet;
+
     private void Start()
     {
         objectPoolScript = (ObjectPool_Script)objectPool.GetComponent(typeof(ObjectPool_Script));
@@ -57,7 +60,17 @@ public class WaveHandler : MonoBehaviour
                     timer += Random.Range(0, timeScale);
                 }
             }
+            if(!killsNeededSet)
+            {
+                SetKillsNeeded();
+            }
         }
+    }
+
+    void SetKillsNeeded()
+    {
+        killsNeeded += enemyAmount[currentWave - 1];
+        killsNeededSet = false;
     }
 
     void ResetCooldown()

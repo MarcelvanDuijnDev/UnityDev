@@ -30,7 +30,8 @@ public class DamageHandler : MonoBehaviour
         }
     }
 
-    void OnAwake()
+    
+    void Awake()
     {
         healthReset = new float[addBodyPartScript.Length];
         for (int i = 0; i < addBodyPartScript.Length; i++)

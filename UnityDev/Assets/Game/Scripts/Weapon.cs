@@ -30,13 +30,14 @@ public class Weapon : MonoBehaviour
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
                     try
                     {
-                        if (hit.transform.root.GetComponent<DamageHandler>() != null)
+                        if (hit.transform.GetComponent<DamageHandler>() != null)
                         {
                             float damageExtra = extraDamage;
-                            hit.transform.root.GetComponent<DamageHandler>().DoDamage(damageAmount * damageExtra, hit.transform.name);
+                            hit.transform.GetComponent<DamageHandler>().DoDamage(damageAmount * damageExtra, hit.transform.name);
+                           
                         }
                     }
-                    catch { }
+                    catch {}
                 }
                 else
                 {
