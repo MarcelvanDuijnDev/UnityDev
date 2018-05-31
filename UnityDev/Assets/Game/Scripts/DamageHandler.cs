@@ -9,7 +9,7 @@ public class DamageHandler : MonoBehaviour
     public bool dead;
     public string switchStateString;
     public float damageMulti;
-    private float[] healthReset;
+    public float[] healthReset;
 
     private void Update()
     {
@@ -29,14 +29,12 @@ public class DamageHandler : MonoBehaviour
             dead = true;
         }
     }
-
-    
-    void Awake()
+        
+    private void OnEnable()
     {
-        healthReset = new float[addBodyPartScript.Length];
         for (int i = 0; i < addBodyPartScript.Length; i++)
         {
-            healthReset[i] = addBodyPartScript[i].health;
+            addBodyPartScript[i].health = healthReset[i];
         }
     }
 

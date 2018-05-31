@@ -32,7 +32,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4066341993319018
 Transform:
   m_ObjectHideFlags: 1
@@ -109,6 +109,7 @@ MonoBehaviour:
   dead: 0
   switchStateString: 
   damageMulti: 0
+  healthReset: []
 --- !u!114 &114337776995025612
 MonoBehaviour:
   m_ObjectHideFlags: 1

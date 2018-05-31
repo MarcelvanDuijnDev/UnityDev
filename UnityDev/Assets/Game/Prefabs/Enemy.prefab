@@ -2007,6 +2007,8 @@ MonoBehaviour:
     linkedObjects: []
   dead: 0
   switchStateString: 
+  damageMulti: 0
+  healthReset: []
 --- !u!114 &114911150857466318
 MonoBehaviour:
   m_ObjectHideFlags: 1
