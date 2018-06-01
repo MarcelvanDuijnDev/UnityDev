@@ -7,7 +7,7 @@ public class PlayerStatsCurrentGame : MonoBehaviour
 {
     private int currentPerk;
     private int money;
-    private int kills;
+    [HideInInspector]public int kills;
     private PlayerStats playerScript;
     private WaveHandler waveHandlerScript;
     [SerializeField]private Text healthText, armorText;
@@ -15,6 +15,7 @@ public class PlayerStatsCurrentGame : MonoBehaviour
     [SerializeField]private Text playerPerkLevel, playerCurrentPerkName;
     [SerializeField]private Text weaponName, weaponAmmo, weaponClip;
     [SerializeField]private Text waveText, waveAmountText;
+    [SerializeField]private Text cooldownText;
     [SerializeField]private GameObject player;
     [SerializeField]private PlayerController playerControllerScript;
     [SerializeField]private Weapon weaponScript;
@@ -42,6 +43,16 @@ public class PlayerStatsCurrentGame : MonoBehaviour
 
         waveText.text = waveHandlerScript.currentWave.ToString() + "/" + waveHandlerScript.waveAmount.ToString();
         waveAmountText.text = waveHandlerScript.currentWave.ToString();
+
+        //Cooldown
+        if(waveHandlerScript.cooldown)
+        {
+            cooldownText.text = waveHandlerScript.cooldownTimer.ToString("F0");
+        }
+        else
+        {
+            cooldownText.text = "";
+        }
     }
 
     public void AddMoney(int moneyAmount)
@@ -78,7 +89,6 @@ public class PlayerStatsCurrentGame : MonoBehaviour
             normalSpeed += 0.05f * playerScript.perkLevel[currentPerk];
             sprintSpeed += 0.06f * playerScript.perkLevel[currentPerk];
             playerControllerScript.SetValues(normalSpeed,sprintSpeed);
-            Debug.Log(normalSpeed);
             weaponScript.SetValues(extraDamage);
         }
 

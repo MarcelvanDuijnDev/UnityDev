@@ -32,6 +32,7 @@ public class DamageHandler : MonoBehaviour
         
     private void OnEnable()
     {
+        dead = false;
         for (int i = 0; i < addBodyPartScript.Length; i++)
         {
             addBodyPartScript[i].health = healthReset[i];
@@ -42,7 +43,6 @@ public class DamageHandler : MonoBehaviour
     {
         float damage = 0;
         float damageAmountCalculated = damageAmount;// * damageMulti;
-        Debug.Log(damageAmountCalculated);
         for (int i = 0; i < addBodyPartScript.Length; i++)
         {
             if (addBodyPartScript[i].bodyPart.transform.name == objectName)

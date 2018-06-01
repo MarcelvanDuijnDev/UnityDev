@@ -7,6 +7,7 @@ public class WaveHandler : MonoBehaviour
     [Header("Object Pool")]
     ObjectPool_Script objectPoolScript;
     public GameObject objectPool;
+    private PlayerStatsCurrentGame playerScript;
 
     [Header("Options")]
     public int waveAmount;
@@ -14,11 +15,11 @@ public class WaveHandler : MonoBehaviour
     [SerializeField]private Transform[] spawnPositions;
 
     //Cooldown
-    [SerializeField]private float cooldownTimer;
+    [HideInInspector]public float cooldownTimer;
     private float cooldownTimerReset;
     [HideInInspector]public int currentWave;
     private float timer;
-    private bool cooldown;
+    [HideInInspector]public bool cooldown;
     private bool waveActive;
 
     [SerializeField]private float timeScale;
@@ -26,11 +27,11 @@ public class WaveHandler : MonoBehaviour
     [SerializeField]private int[] enemyAmount;
     public int activeEnemys;
 
-    private int killsNeeded;
-    private bool killsNeededSet;
+    public int[] killsNeeded;
 
     private void Start()
     {
+        playerScript = this.gameObject.GetComponent<PlayerStatsCurrentGame>();
         objectPoolScript = (ObjectPool_Script)objectPool.GetComponent(typeof(ObjectPool_Script));
 
         currentWave = 1;
@@ -42,6 +43,7 @@ public class WaveHandler : MonoBehaviour
     {
         if(cooldown)
         {
+            waveActive = false;
             cooldownTimer -= 1 * Time.deltaTime;
             if(cooldownTimer <= 0)
             {
@@ -60,17 +62,15 @@ public class WaveHandler : MonoBehaviour
                     timer += Random.Range(0, timeScale);
                 }
             }
-            if(!killsNeededSet)
-            {
-                SetKillsNeeded();
-            }
         }
-    }
-
-    void SetKillsNeeded()
-    {
-        killsNeeded += enemyAmount[currentWave - 1];
-        killsNeededSet = false;
+        //
+        Debug.Log(playerScript.kills);
+        Debug.Log(killsNeeded[currentWave -1]);
+        Debug.Log(currentWave);
+        if(killsNeeded[currentWave -1] == playerScript.kills)
+        {
+            cooldown = true;
+        }
     }
 
     void ResetCooldown()

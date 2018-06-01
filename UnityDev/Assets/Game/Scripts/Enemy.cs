@@ -28,6 +28,11 @@ public class Enemy : MonoBehaviour
         HandleAnimations();
 	}
 
+    private void OnEnable()
+    {
+        deadActivate = false;
+    }
+
     void Dead()
     {
         GameObject systemObj = GameObject.Find("System");

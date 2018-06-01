@@ -109,7 +109,8 @@ MonoBehaviour:
   dead: 0
   switchStateString: 
   damageMulti: 0
-  healthReset: []
+  healthReset:
+  - 100
 --- !u!114 &114337776995025612
 MonoBehaviour:
   m_ObjectHideFlags: 1
