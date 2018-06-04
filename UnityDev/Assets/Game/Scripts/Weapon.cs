@@ -14,6 +14,9 @@ public class Weapon : MonoBehaviour
     [SerializeField]private float extraDamage;
     private AudioScript audioScript;
 
+    //Abilitys
+    private bool m_InstaKill;
+
     private void Start()
     {
         audioScript = systemObj.GetComponent<AudioScript>();
@@ -83,5 +86,10 @@ public class Weapon : MonoBehaviour
     public void SetValues(float setExtraDamage)
     {
         extraDamage = setExtraDamage;
+    }
+
+    public void Activate_InstaKill(bool state)
+    {
+        m_InstaKill = state;
     }
 }

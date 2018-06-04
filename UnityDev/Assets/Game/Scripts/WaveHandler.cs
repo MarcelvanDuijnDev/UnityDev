@@ -12,7 +12,8 @@ public class WaveHandler : MonoBehaviour
     [Header("Options")]
     public int waveAmount;
     [SerializeField]private GameObject[] enemyPrefabs;
-    [SerializeField]private Transform[] spawnPositions;
+    [SerializeField]private Transform m_SpawnPosition;
+    private Transform[] spawnPositions;
 
     //Cooldown
     [HideInInspector]public float cooldownTimer;
@@ -26,13 +27,20 @@ public class WaveHandler : MonoBehaviour
     [SerializeField]private int maxEnemyAlive;
     [SerializeField]private int[] enemyAmount;
     public int activeEnemys;
-
     public int[] killsNeeded;
+    [HideInInspector]
+    public float timerMatch;
+
 
     private void Start()
     {
         playerScript = this.gameObject.GetComponent<PlayerStatsCurrentGame>();
         objectPoolScript = (ObjectPool_Script)objectPool.GetComponent(typeof(ObjectPool_Script));
+        spawnPositions = new Transform[m_SpawnPosition.transform.childCount];
+        for (int i = 0; i < spawnPositions.Length; i++)
+        {
+            spawnPositions[i] = m_SpawnPosition.transform.GetChild(i);
+        }
 
         currentWave = 1;
         waveActive = true;
@@ -41,7 +49,8 @@ public class WaveHandler : MonoBehaviour
 
     void Update()
     {
-        if(cooldown)
+        timerMatch += 1 * Time.deltaTime;
+        if (cooldown)
         {
             waveActive = false;
             cooldownTimer -= 1 * Time.deltaTime;

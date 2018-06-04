@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    private JsonSaveGameSettings JsonDataScript = new JsonSaveGameSettings();
+    private JsonSavePlayerSettings JsonDataScript = new JsonSavePlayerSettings();
     [HideInInspector]
     public int lastPerk;
     private int currentPerk;
@@ -66,7 +66,7 @@ public class PlayerStats : MonoBehaviour
     {
         string dataPath = "Assets/PlayerStats.json";
         string dataAsJson = File.ReadAllText(dataPath);
-        JsonDataScript = JsonUtility.FromJson<JsonSaveGameSettings>(dataAsJson);
+        JsonDataScript = JsonUtility.FromJson<JsonSavePlayerSettings>(dataAsJson);
         perkXPCurrent = new float[JsonDataScript.perkXP.Length];
         perkLevel = new int[JsonDataScript.perkLevel.Length];
         for (int i = 0; i < perkXPCurrent.Length; i++)
@@ -95,7 +95,7 @@ public class PlayerStats : MonoBehaviour
     }
 }
 
-public class JsonSaveGameSettings
+public class JsonSavePlayerSettings
 {
     public int lastPerk;
     public string[] perks;

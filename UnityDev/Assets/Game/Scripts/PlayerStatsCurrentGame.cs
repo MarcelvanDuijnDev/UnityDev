@@ -8,6 +8,7 @@ public class PlayerStatsCurrentGame : MonoBehaviour
     private int currentPerk;
     private int money;
     [HideInInspector]public int kills;
+    public int score;
     private PlayerStats playerScript;
     private WaveHandler waveHandlerScript;
     [SerializeField]private Text healthText, armorText;
@@ -69,11 +70,12 @@ public class PlayerStatsCurrentGame : MonoBehaviour
     {
         kills++;
         playerScript.AddKill();
+        score += 100;
     }
 
     public void SetCurrentPerk(int perkIndex)
     {
-        currentPerk = perkIndex;
+        //currentPerk = perkIndex;
         playerScript.SetCurrentPerk(perkIndex);
         SetPlayerPerk();
     }

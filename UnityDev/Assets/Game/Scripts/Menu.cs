@@ -38,5 +38,6 @@ public class Menu : MonoBehaviour
     public void ResumeGame()
     {
         pauzeMenuObj.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

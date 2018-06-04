@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
     private float jumpSpeed;
     [SerializeField]private float gravity;
     [SerializeField]private GameObject fps_camera, thirdperson_Camera;
+    [SerializeField]private GameObject m_FlashLight;
     private bool camera_Perspective;
     private Vector3 moveDirection = Vector3.zero;
     //Look around
@@ -27,10 +28,15 @@ public class PlayerController : MonoBehaviour {
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        m_FlashLight.SetActive(true);
     }
 
     void Update() 
     {
+        if (health <= 0)
+        {
+            Dead();
+        }
         dpadHorizontal = Input.GetAxis("DPadHorizontal");
         dpadVertical = Input.GetAxis("DPadVertical");
         if (Input.GetKeyDown(KeyCode.B) || Input.GetButtonDown("Select"))
@@ -45,7 +51,17 @@ public class PlayerController : MonoBehaviour {
         {
             camera_Perspective = true;
         }
-
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            if(!m_FlashLight.activeSelf)
+            {
+                m_FlashLight.SetActive(true);
+            }
+            else
+            {
+                m_FlashLight.SetActive(false);
+            }
+        }
 
         if (!camera_Perspective)
         {
@@ -113,8 +129,14 @@ public class PlayerController : MonoBehaviour {
         }
         if(health <= 0)
         {
-            Debug.Log("dead");
+            Dead();
         }
+    }
+
+    private void Dead()
+    {
+        GameObject systemObj = GameObject.Find("System");
+        systemObj.GetComponent<ScoreBoard>().Dead(0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -123,7 +145,6 @@ public class PlayerController : MonoBehaviour {
         if(other.gameObject.tag == "AmmoPickup")
         {
             AddAmmo(other.gameObject);
-            Debug.Log("1");
         }
         if(other.gameObject.tag == "HealthPickup")
         {
