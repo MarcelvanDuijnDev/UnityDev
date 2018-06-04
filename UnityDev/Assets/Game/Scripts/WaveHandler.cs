@@ -45,7 +45,7 @@ public class WaveHandler : MonoBehaviour
         {
             waveActive = false;
             cooldownTimer -= 1 * Time.deltaTime;
-            if(cooldownTimer <= 0)
+            if (cooldownTimer <= 0)
             {
                 ResetCooldown();
             }
@@ -64,9 +64,6 @@ public class WaveHandler : MonoBehaviour
             }
         }
         //
-        Debug.Log(playerScript.kills);
-        Debug.Log(killsNeeded[currentWave -1]);
-        Debug.Log(currentWave);
         if(killsNeeded[currentWave -1] == playerScript.kills)
         {
             cooldown = true;
@@ -75,9 +72,10 @@ public class WaveHandler : MonoBehaviour
 
     void ResetCooldown()
     {
-        cooldownTimer = cooldownTimerReset;
+        currentWave += 1;
         cooldown = false;
         waveActive = true;
+        cooldownTimer = cooldownTimerReset;
     }
 
     void SpawnEnemy(int enemyID)
@@ -94,4 +92,5 @@ public class WaveHandler : MonoBehaviour
             }
         }
     }
+        
 }

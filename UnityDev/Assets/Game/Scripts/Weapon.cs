@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour 
 {
+    public GameObject systemObj;
     public string nameGun;
     public string type;
-    public int currentAmmo, currentClip;
+    public float currentAmmo, currentClip;
     [SerializeField]private int maxAmmo, maxClipSize;
     [SerializeField]private float range;
     [SerializeField]private float damageAmount;
     [SerializeField]private float extraDamage;
+    private AudioScript audioScript;
 
     private void Start()
     {
+        audioScript = systemObj.GetComponent<AudioScript>();
         currentClip = maxClipSize;
     }
 
@@ -25,6 +28,7 @@ public class Weapon : MonoBehaviour
             if (currentClip > 0)
             {
                 currentClip -= 1;
+                audioScript.PlaySound_GunShot(0, 0);
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
                 {
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
@@ -37,12 +41,18 @@ public class Weapon : MonoBehaviour
                            
                         }
                     }
-                    catch {}
+                    catch
+                    {
+                    }
                 }
                 else
                 {
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.red);
                 }
+            }
+            else
+            {
+                audioScript.PlaySound_EmptyGun(0, 0);
             }
         }
 

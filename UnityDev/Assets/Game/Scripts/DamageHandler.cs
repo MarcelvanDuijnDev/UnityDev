@@ -71,10 +71,6 @@ public class DamageHandler : MonoBehaviour
                         }
                     }
                 }
-                if (addBodyPartScript[i].bodyPart.GetComponent<Rigidbody>() == null)
-                {
-                    addBodyPartScript[i].bodyPart.AddComponent<Rigidbody>();
-                }
             }
         }
     }

@@ -119,41 +119,61 @@ public class PlayerController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "PickupAmmo")
+        Debug.Log(other.gameObject.tag);
+        if(other.gameObject.tag == "AmmoPickup")
         {
-            float amount = other.gameObject.GetComponent<Pickup>().pickupAmount;
+            AddAmmo(other.gameObject);
+            Debug.Log("1");
         }
-        if(other.gameObject.tag == "PickupHealh")
+        if(other.gameObject.tag == "HealthPickup")
         {
-            if (health <= maxHealth)
+            AddHealth(other.gameObject);
+        }
+        if(other.gameObject.tag == "ArmorPickup")
+        {
+            AddArmor(other.gameObject);
+        }
+    }
+
+    private void AddHealth(GameObject otherObj)
+    {
+        if (health <= maxHealth)
+        {
+            float amount = otherObj.gameObject.GetComponent<Pickup>().pickupAmount;
+            if (health > maxHealth)
             {
-                float amount = other.gameObject.GetComponent<Pickup>().pickupAmount;
-                if (health > maxHealth)
-                {
-                    health = maxHealth;
-                }
-                else
-                {
-                    health += amount;
-                }
-                other.gameObject.SetActive(false);
+                health = maxHealth;
             }
-        }
-        if(other.gameObject.tag == "PickupArmor")
-        {
-            if (armor <= maxArmor)
+            else
             {
-                float amount = other.gameObject.GetComponent<Pickup>().pickupAmount;
-                if(amount > maxArmor)
-                {
-                    armor = maxArmor;
-                }
-                else
-                {
-                    armor += amount;
-                }
-                other.gameObject.SetActive(false);
+                health += amount;
             }
+            otherObj.gameObject.SetActive(false);
         }
+    }
+
+    private void AddArmor(GameObject otherObj)
+    {
+        if (armor <= maxArmor)
+        {
+            float amount = otherObj.gameObject.GetComponent<Pickup>().pickupAmount;
+            if(amount > maxArmor)
+            {
+                armor = maxArmor;
+            }
+            else
+            {
+                armor += amount;
+            }
+            otherObj.gameObject.SetActive(false);
+        }
+    }
+
+    private void AddAmmo(GameObject otherObj)
+    {
+        float amount = otherObj.gameObject.GetComponent<Pickup>().pickupAmount;
+        Weapon weaponScript = this.gameObject.GetComponentInChildren<Weapon>();
+        weaponScript.currentAmmo += amount;
+        otherObj.gameObject.SetActive(false);
     }
 }
