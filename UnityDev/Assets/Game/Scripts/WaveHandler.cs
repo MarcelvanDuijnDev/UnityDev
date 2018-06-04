@@ -31,6 +31,8 @@ public class WaveHandler : MonoBehaviour
     [HideInInspector]
     public float timerMatch;
 
+    public int enemysAlive;
+
 
     private void Start()
     {
@@ -71,6 +73,7 @@ public class WaveHandler : MonoBehaviour
                     timer += Random.Range(0, timeScale);
                 }
             }
+            enemysAlive = enemyAmount[currentWave -1] - playerScript.kills + killsNeeded[currentWave -1];
         }
         //
         if(killsNeeded[currentWave -1] == playerScript.kills)

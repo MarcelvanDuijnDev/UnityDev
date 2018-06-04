@@ -43,7 +43,7 @@ public class PlayerStatsCurrentGame : MonoBehaviour
         armorText.text = "[] " + playerControllerScript.armor.ToString();
 
         waveText.text = waveHandlerScript.currentWave.ToString() + "/" + waveHandlerScript.waveAmount.ToString();
-        waveAmountText.text = waveHandlerScript.currentWave.ToString();
+        waveAmountText.text = waveHandlerScript.enemysAlive.ToString();
 
         //Cooldown
         if(waveHandlerScript.cooldown)
