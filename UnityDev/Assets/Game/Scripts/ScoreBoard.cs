@@ -7,7 +7,7 @@ public class ScoreBoard : MonoBehaviour
 {
     private JsonSaveScoreData JsonDataScript = new JsonSaveScoreData();
     public JsonScoreData[] jsonScript;
-    public bool save;
+    public bool save, reset;
 
     private void Start()
     {
@@ -20,6 +20,10 @@ public class ScoreBoard : MonoBehaviour
         if(save)
         {
             Save();
+        }
+        if(reset)
+        {
+            ResetScoreAll();
         }
     }
 
@@ -45,6 +49,22 @@ public class ScoreBoard : MonoBehaviour
             JsonDataScript.jsonScoreDataScript[mapID].score = score;
         }
         Save();
+    }
+
+    public void ResetScore(int mapID)
+    {
+        JsonDataScript.jsonScoreDataScript[mapID].kills = 0;
+        JsonDataScript.jsonScoreDataScript[mapID].timeSurvived = 0;
+        JsonDataScript.jsonScoreDataScript[mapID].score = 0;
+    }
+
+
+    public void ResetScoreAll()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            ResetScore(i);
+        }
     }
 
     public void Dead(int mapID)
