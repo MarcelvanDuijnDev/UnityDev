@@ -9,8 +9,10 @@ public class Settings : MonoBehaviour
 
     private void Start()
     {
+        print(Application.persistentDataPath);
         Save();
         //Load();
+
     }
 
     private void Update()
@@ -30,11 +32,12 @@ public class Settings : MonoBehaviour
         JsonDataScript.unlimmitedAmmo = false;
 
         string json = JsonUtility.ToJson(JsonDataScript);
-        File.WriteAllText("Assets/Settings.json", json.ToString());
+        File.WriteAllText(Application.persistentDataPath + "/Settings.json", json.ToString());
+        Debug.Log(Application.persistentDataPath + "/Settings.json");
     }
     private void Load()
     {
-        string dataPath = "Assets/Settings.json";
+        string dataPath = Application.persistentDataPath +"Settings.json";
         string dataAsJson = File.ReadAllText(dataPath);
         JsonDataScript = JsonUtility.FromJson<JsonSaveGameSettings>(dataAsJson);
     }

@@ -1,13 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class MathConverter : MonoBehaviour
 {
     public string formula;
 
-    public MonoScript[] scripts;
     int scriptAmount;
 
     [Header("Input Formula")]

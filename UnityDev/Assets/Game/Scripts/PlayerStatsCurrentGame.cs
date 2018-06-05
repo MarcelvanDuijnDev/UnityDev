@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerStatsCurrentGame : MonoBehaviour
 {
     private int currentPerk;
-    private int money;
+    [HideInInspector]public int money;
     [HideInInspector]public int kills;
     public int score;
     private PlayerStats playerScript;
@@ -36,7 +36,7 @@ public class PlayerStatsCurrentGame : MonoBehaviour
         playerCurrentPerkName.text = playerScript.currentPerkName.ToString();
 
         weaponName.text = "" + weaponScript.nameGun;
-        weaponAmmo.text = "Ammo: " + weaponScript.currentAmmo;
+        weaponAmmo.text = "Ammo: " + weaponScript.currentAmmo + " / " + weaponScript.maxAmmo;
         weaponClip.text = "Clip: " + weaponScript.currentClip;
 
         healthText.text = "+ " + playerControllerScript.health.ToString();
@@ -82,9 +82,11 @@ public class PlayerStatsCurrentGame : MonoBehaviour
 
     public void SetPlayerPerk()
     {
+        /*
         float extraDamage = 1;
         float normalSpeed = 5;
         float sprintSpeed = 8;
+
         if(currentPerk == 0) //Commando
         {
             extraDamage += 0.0f * playerScript.perkLevel[currentPerk];
@@ -93,6 +95,7 @@ public class PlayerStatsCurrentGame : MonoBehaviour
             playerControllerScript.SetValues(normalSpeed,sprintSpeed);
             weaponScript.SetValues(extraDamage);
         }
+        */
 
     }
 }

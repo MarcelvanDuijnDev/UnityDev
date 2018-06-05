@@ -8,9 +8,8 @@ public class PlayerController : MonoBehaviour {
     public float health, armor;
     [SerializeField]private float maxHealth, maxArmor;
     //Movement
-    [SerializeField]private float normalSpeed, sprintSpeed;
-    [SerializeField]
-    private float jumpSpeed;
+    public float normalSpeed, sprintSpeed;
+    [SerializeField]private float jumpSpeed;
     [SerializeField]private float gravity;
     [SerializeField]private GameObject fps_camera, thirdperson_Camera;
     [SerializeField]private GameObject m_FlashLight;
@@ -25,6 +24,14 @@ public class PlayerController : MonoBehaviour {
     private float speed;
     private float dpadHorizontal, dpadVertical;
 
+    //Upgrades
+    private float m_Healht_Upgrade;
+    private float m_Armor_Upgrade;
+    private float m_HealthRegen_Upgrade;
+    private float m_NormalSpeed_Upgrade;
+    private float m_SprintSpeed_Upgrade;
+    private float m_JumpHeight_Upgrade;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -37,6 +44,11 @@ public class PlayerController : MonoBehaviour {
         {
             Dead();
         }
+        if (health <= maxHealth)
+        {
+            health += m_HealthRegen_Upgrade * Time.deltaTime;
+        }
+        Debug.Log(m_HealthRegen_Upgrade);
         dpadHorizontal = Input.GetAxis("DPadHorizontal");
         dpadVertical = Input.GetAxis("DPadVertical");
         if (Input.GetKeyDown(KeyCode.B) || Input.GetButtonDown("Select"))
@@ -91,7 +103,7 @@ public class PlayerController : MonoBehaviour {
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= speed;
             if (Input.GetButton("Jump") || Input.GetButton("AButton"))
-                moveDirection.y = jumpSpeed;
+                moveDirection.y = jumpSpeed + m_JumpHeight_Upgrade;
         }
         moveDirection.y -= gravity * Time.deltaTime;
         controller.Move(moveDirection * Time.deltaTime);
@@ -100,12 +112,17 @@ public class PlayerController : MonoBehaviour {
         //Sprint
         if(Input.GetKey(KeyCode.LeftShift))
         {
-            speed = sprintSpeed;
+            speed = sprintSpeed + m_SprintSpeed_Upgrade;
         }
         else
         {
-            speed = normalSpeed;
+            speed = normalSpeed + m_NormalSpeed_Upgrade;
         }
+        //Upgrades
+        maxHealth = 100 + m_Healht_Upgrade;
+        maxArmor = 100 + m_Armor_Upgrade;
+        jumpSpeed = 8 + m_JumpHeight_Upgrade;
+
     }
 
     public void SetValues(float setPlayerSpeed, float setSprintSpeed)
@@ -196,5 +213,15 @@ public class PlayerController : MonoBehaviour {
         Weapon weaponScript = this.gameObject.GetComponentInChildren<Weapon>();
         weaponScript.currentAmmo += amount;
         otherObj.gameObject.SetActive(false);
+    }
+
+    public void Upgrade(float healhtUpgrade,float armorUpgrade,float healthRegenUpgrade ,float normalSpeedUpgrade,float sprintSpeedUpgrade,float jumpHeightUpgrade)
+    {
+        m_Healht_Upgrade = healhtUpgrade;
+        m_Armor_Upgrade = armorUpgrade;
+        m_HealthRegen_Upgrade = healthRegenUpgrade;
+        m_NormalSpeed_Upgrade = normalSpeedUpgrade;
+        m_SprintSpeed_Upgrade = sprintSpeedUpgrade;
+        m_JumpHeight_Upgrade = jumpHeightUpgrade;
     }
 }

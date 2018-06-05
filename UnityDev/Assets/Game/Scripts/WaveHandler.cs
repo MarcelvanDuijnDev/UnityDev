@@ -36,6 +36,8 @@ public class WaveHandler : MonoBehaviour
 
     private void Start()
     {
+        Random.seed = 666;
+
         playerScript = this.gameObject.GetComponent<PlayerStatsCurrentGame>();
         objectPoolScript = (ObjectPool_Script)objectPool.GetComponent(typeof(ObjectPool_Script));
         spawnPositions = new Transform[m_SpawnPosition.transform.childCount];

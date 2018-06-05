@@ -17,10 +17,12 @@ public class Menu : MonoBehaviour
             if(pauzeMenuObj.activeSelf)
             {
                 pauzeMenuObj.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
             }
             else
             {
                 pauzeMenuObj.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
             }
         }
     }

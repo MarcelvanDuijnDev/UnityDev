@@ -8,7 +8,8 @@ public class Weapon : MonoBehaviour
     public string nameGun;
     public string type;
     public float currentAmmo, currentClip;
-    [SerializeField]private int maxAmmo, maxClipSize;
+    public int maxAmmo;
+    [SerializeField]private int maxClipSize;
     [SerializeField]private float range;
     [SerializeField]private float damageAmount;
     [SerializeField]private float extraDamage;
@@ -16,6 +17,11 @@ public class Weapon : MonoBehaviour
 
     //Abilitys
     private bool m_InstaKill;
+
+    //Upgrades
+    private float m_DamageAmount_Upgrade;
+    private int m_MaxClipSize_Upgrade;
+    private int m_MaxAmmo_Upgrade;
 
     private void Start()
     {
@@ -40,7 +46,7 @@ public class Weapon : MonoBehaviour
                         if (hit.transform.GetComponent<DamageHandler>() != null)
                         {
                             float damageExtra = extraDamage;
-                            hit.transform.GetComponent<DamageHandler>().DoDamage(damageAmount * damageExtra, hit.transform.name);
+                            hit.transform.GetComponent<DamageHandler>().DoDamage(damageAmount + m_DamageAmount_Upgrade, hit.transform.name);
                            
                         }
                     }
@@ -75,6 +81,9 @@ public class Weapon : MonoBehaviour
                 }
             }
         }
+        //Upgrades
+        maxClipSize = 10 + m_MaxClipSize_Upgrade;
+        maxAmmo = 100 + m_MaxAmmo_Upgrade;
 	}
 
     public void UpgradeGun(int addMaxAmmo,int addMaxClipSize)
@@ -91,5 +100,12 @@ public class Weapon : MonoBehaviour
     public void Activate_InstaKill(bool state)
     {
         m_InstaKill = state;
+    }
+
+    public void Upgrade(int clipUpgrade,int ammoUpgrade, float damageUpgrade)
+    {
+        m_DamageAmount_Upgrade = damageUpgrade;
+        m_MaxAmmo_Upgrade = ammoUpgrade;
+        m_MaxClipSize_Upgrade = clipUpgrade;
     }
 }
