@@ -676,8 +676,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1684247990728060}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -1.81, y: 2.268, z: 9.636036}
-  m_LocalScale: {x: 9.876483, y: 9.876488, z: 9.876488}
+  m_LocalPosition: {x: 102.18, y: 3.55, z: -93.998}
+  m_LocalScale: {x: 14.9601345, y: 14.96014, z: 14.96014}
   m_Children:
   - {fileID: 4282252455053810}
   m_Father: {fileID: 0}
@@ -1841,6 +1841,7 @@ MonoBehaviour:
   - info: Middle
     bodyPartName: M
     bodyPart: {fileID: 1740409927411602}
+    maxHealth: 200
     health: 200
     armor: 0
     priority: 100
@@ -1851,6 +1852,7 @@ MonoBehaviour:
   - info: BodyLower
     bodyPartName: L
     bodyPart: {fileID: 1124300968864928}
+    maxHealth: 200
     health: 200
     armor: 0
     priority: 100
@@ -1859,6 +1861,7 @@ MonoBehaviour:
   - info: BodyUpper
     bodyPartName: C
     bodyPart: {fileID: 1367786093907516}
+    maxHealth: 200
     health: 200
     armor: 0
     priority: 100
@@ -1869,6 +1872,7 @@ MonoBehaviour:
   - info: Neck
     bodyPartName: B
     bodyPart: {fileID: 1887909128864526}
+    maxHealth: 100
     health: 100
     armor: 0
     priority: 100
@@ -1877,6 +1881,7 @@ MonoBehaviour:
   - info: RightShoulder
     bodyPartName: D
     bodyPart: {fileID: 1028956002693506}
+    maxHealth: 200
     health: 200
     armor: 0
     priority: 20
@@ -1885,6 +1890,7 @@ MonoBehaviour:
   - info: RightUpperArm
     bodyPartName: E
     bodyPart: {fileID: 1864957660601916}
+    maxHealth: 150
     health: 150
     armor: 0
     priority: 15
@@ -1893,6 +1899,7 @@ MonoBehaviour:
   - info: RightLowerArm
     bodyPartName: F
     bodyPart: {fileID: 1389262194768040}
+    maxHealth: 100
     health: 100
     armor: 0
     priority: 10
@@ -1901,6 +1908,7 @@ MonoBehaviour:
   - info: RightHand
     bodyPartName: G
     bodyPart: {fileID: 1145175685926374}
+    maxHealth: 50
     health: 50
     armor: 0
     priority: 5
@@ -1908,6 +1916,7 @@ MonoBehaviour:
   - info: LeftShoulder
     bodyPartName: H
     bodyPart: {fileID: 1287930919672724}
+    maxHealth: 200
     health: 200
     armor: 0
     priority: 20
@@ -1916,6 +1925,7 @@ MonoBehaviour:
   - info: LeftUpperArm
     bodyPartName: I
     bodyPart: {fileID: 1185259134567838}
+    maxHealth: 150
     health: 150
     armor: 0
     priority: 15
@@ -1924,6 +1934,7 @@ MonoBehaviour:
   - info: LeftLowerArm
     bodyPartName: J
     bodyPart: {fileID: 1199164955627660}
+    maxHealth: 100
     health: 100
     armor: 0
     priority: 10
@@ -1932,6 +1943,7 @@ MonoBehaviour:
   - info: LeftHand
     bodyPartName: K
     bodyPart: {fileID: 1579602632682778}
+    maxHealth: 50
     health: 50
     armor: 0
     priority: 5
@@ -1939,6 +1951,7 @@ MonoBehaviour:
   - info: RightUpperLeg
     bodyPartName: N
     bodyPart: {fileID: 1771097329446134}
+    maxHealth: 200
     health: 200
     armor: 0
     priority: 20
@@ -1947,6 +1960,7 @@ MonoBehaviour:
   - info: RightKnee
     bodyPartName: O
     bodyPart: {fileID: 1908478217752436}
+    maxHealth: 150
     health: 150
     armor: 0
     priority: 15
@@ -1955,6 +1969,7 @@ MonoBehaviour:
   - info: RightLowerLeg
     bodyPartName: P
     bodyPart: {fileID: 1792463301392690}
+    maxHealth: 100
     health: 100
     armor: 0
     priority: 10
@@ -1963,6 +1978,7 @@ MonoBehaviour:
   - info: RightFoot
     bodyPartName: Q
     bodyPart: {fileID: 1159822847352508}
+    maxHealth: 50
     health: 50
     armor: 0
     priority: 5
@@ -1970,6 +1986,7 @@ MonoBehaviour:
   - info: LeftUpperLeg
     bodyPartName: R
     bodyPart: {fileID: 1368312967300800}
+    maxHealth: 200
     health: 200
     armor: 0
     priority: 20
@@ -1978,6 +1995,7 @@ MonoBehaviour:
   - info: LeftKnee
     bodyPartName: S
     bodyPart: {fileID: 1257608510513142}
+    maxHealth: 150
     health: 150
     armor: 0
     priority: 15
@@ -1986,6 +2004,7 @@ MonoBehaviour:
   - info: LeftLowerLeg
     bodyPartName: T
     bodyPart: {fileID: 1719406813885764}
+    maxHealth: 100
     health: 100
     armor: 0
     priority: 10
@@ -1994,6 +2013,7 @@ MonoBehaviour:
   - info: LeftFoot
     bodyPartName: U
     bodyPart: {fileID: 1672626571366718}
+    maxHealth: 50
     health: 50
     armor: 0
     priority: 5
@@ -2001,6 +2021,7 @@ MonoBehaviour:
   - info: Head
     bodyPartName: A
     bodyPart: {fileID: 1338254071517318}
+    maxHealth: 100
     health: 100
     armor: 0
     priority: 100
@@ -2008,7 +2029,6 @@ MonoBehaviour:
   dead: 0
   switchStateString: 
   damageMulti: 0
-  healthReset: []
 --- !u!114 &114911150857466318
 MonoBehaviour:
   m_ObjectHideFlags: 1

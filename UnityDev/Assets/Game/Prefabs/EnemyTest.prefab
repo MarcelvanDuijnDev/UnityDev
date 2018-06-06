@@ -102,6 +102,7 @@ MonoBehaviour:
   - info: Enemy
     bodyPartName: all
     bodyPart: {fileID: 1454916986145840}
+    maxHealth: 100
     health: 100
     armor: 0
     priority: 100
@@ -109,8 +110,6 @@ MonoBehaviour:
   dead: 0
   switchStateString: 
   damageMulti: 0
-  healthReset:
-  - 100
 --- !u!114 &114337776995025612
 MonoBehaviour:
   m_ObjectHideFlags: 1

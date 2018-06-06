@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     private string[] checkString;
 
     private float headShotSurviveChance;
+    private float deadSurvivalTime;
 
 	void Start ()
     {
@@ -35,20 +36,18 @@ public class Enemy : MonoBehaviour
 
     void Dead()
     {
+        Debug.Log("dead");
         GameObject systemObj = GameObject.Find("System");
         PlayerStatsCurrentGame playerScript = systemObj.GetComponent<PlayerStatsCurrentGame>();
         playerScript.AddMoney(100);
         playerScript.AddKill();
-        playerScript.AddXP(100);
+        playerScript.AddXP(50);
         deadActivate = true;
         this.gameObject.SetActive(false);
     }
 
     void HandleAnimations()
     {
-
-
-
         //Handle Damage
         if (damageHandlerScript.switchStateString.Contains("G")){checkString[0] = "G";}
         if (damageHandlerScript.switchStateString.Contains("FG")){checkString[0] = "FG";}
@@ -132,6 +131,11 @@ public class Enemy : MonoBehaviour
             case "RSTU":
                 Debug.Log("L UpperLeg");
                 break;
+        }
+        //Head
+        if (damageHandlerScript.switchStateString.Contains("A"))
+        {
+            Debug.Log("HeadShot");
         }
     }
 }

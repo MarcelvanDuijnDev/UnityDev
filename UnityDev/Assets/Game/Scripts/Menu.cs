@@ -7,8 +7,8 @@ public class Menu : MonoBehaviour
 {
     [SerializeField]
     private bool isPauzeMenu;
-    [SerializeField]
-    private GameObject pauzeMenuObj;
+    [SerializeField]private GameObject pauzeMenuObj;
+    [SerializeField]private GameObject optionsMenu;
 
     private void Update()
     {
@@ -16,13 +16,18 @@ public class Menu : MonoBehaviour
         {
             if(pauzeMenuObj.activeSelf)
             {
-                pauzeMenuObj.SetActive(false);
-                Cursor.lockState = CursorLockMode.Locked;
+                if (!optionsMenu.activeSelf)
+                {
+                    pauzeMenuObj.SetActive(false);
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Time.timeScale = 1;
+                }
             }
             else
             {
                 pauzeMenuObj.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
+                Time.timeScale = 0;
             }
         }
     }
@@ -41,5 +46,10 @@ public class Menu : MonoBehaviour
     {
         pauzeMenuObj.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void Options()
+    {
+        optionsMenu.SetActive(true);
     }
 }

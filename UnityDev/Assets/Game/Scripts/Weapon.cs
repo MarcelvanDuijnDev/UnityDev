@@ -8,8 +8,7 @@ public class Weapon : MonoBehaviour
     public string nameGun;
     public string type;
     public float currentAmmo, currentClip;
-    public int maxAmmo;
-    [SerializeField]private int maxClipSize;
+    public int maxAmmo, maxClipSize;
     [SerializeField]private float range;
     [SerializeField]private float damageAmount;
     [SerializeField]private float extraDamage;
@@ -47,7 +46,11 @@ public class Weapon : MonoBehaviour
                         {
                             float damageExtra = extraDamage;
                             hit.transform.GetComponent<DamageHandler>().DoDamage(damageAmount + m_DamageAmount_Upgrade, hit.transform.name);
-                           
+                        }
+                        if(hit.transform.root.GetComponent<DamageHandler>() != null)
+                        {
+                            float damageExtra = extraDamage;
+                            hit.transform.root.GetComponent<DamageHandler>().DoDamage(damageAmount + m_DamageAmount_Upgrade, hit.transform.name);
                         }
                     }
                     catch
@@ -62,6 +65,11 @@ public class Weapon : MonoBehaviour
             else
             {
                 audioScript.PlaySound_EmptyGun(0, 0);
+            }
+
+            if(currentAmmo >= maxAmmo)
+            {
+                currentAmmo = maxAmmo;
             }
         }
 
@@ -82,8 +90,8 @@ public class Weapon : MonoBehaviour
             }
         }
         //Upgrades
-        maxClipSize = 10 + m_MaxClipSize_Upgrade;
-        maxAmmo = 100 + m_MaxAmmo_Upgrade;
+        maxClipSize = 5 + m_MaxClipSize_Upgrade;
+        maxAmmo = 50 + m_MaxAmmo_Upgrade;
 	}
 
     public void UpgradeGun(int addMaxAmmo,int addMaxClipSize)

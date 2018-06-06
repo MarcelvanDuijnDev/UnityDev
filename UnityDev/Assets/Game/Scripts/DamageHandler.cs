@@ -9,7 +9,6 @@ public class DamageHandler : MonoBehaviour
     public bool dead;
     public string switchStateString;
     public float damageMulti;
-    public float[] healthReset;
 
     private void Update()
     {
@@ -35,7 +34,7 @@ public class DamageHandler : MonoBehaviour
         dead = false;
         for (int i = 0; i < addBodyPartScript.Length; i++)
         {
-            addBodyPartScript[i].health = healthReset[i];
+            addBodyPartScript[i].health = addBodyPartScript[i].maxHealth;
         }
     }
 
@@ -83,6 +82,7 @@ public struct AddBodyPart
     public string info;
     public string bodyPartName;
     public GameObject bodyPart;
+    public float maxHealth;
     public float health;
     public float armor;
     public float priority;

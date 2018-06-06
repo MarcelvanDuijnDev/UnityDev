@@ -60,11 +60,11 @@ public class PlayerStats : MonoBehaviour
             JsonDataScript.perkXP[i] = perkXPCurrent[i];
         }
         string json = JsonUtility.ToJson(JsonDataScript);
-        File.WriteAllText("Assets/PlayerStats.json", json.ToString());
+        File.WriteAllText(Application.persistentDataPath + "/PlayerStats.json", json.ToString());
     }
     private void Load()
     {
-        string dataPath = "Assets/PlayerStats.json";
+        string dataPath = Application.persistentDataPath +  "/PlayerStats.json";
         string dataAsJson = File.ReadAllText(dataPath);
         JsonDataScript = JsonUtility.FromJson<JsonSavePlayerSettings>(dataAsJson);
         perkXPCurrent = new float[JsonDataScript.perkXP.Length];

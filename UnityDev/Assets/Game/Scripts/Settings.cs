@@ -5,56 +5,73 @@ using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
-    private JsonSaveGameSettings JsonDataScript = new JsonSaveGameSettings();
+    [HideInInspector]public JsonSaveGameSettings JsonDataScript = new JsonSaveGameSettings();
 
     private void Start()
     {
         print(Application.persistentDataPath);
-        Save();
-        //Load();
-
-    }
-
-    private void Update()
-    {
-
+        Load();
+        SetGameSettings();
     }
 
     private void Save()
     {
-        JsonDataScript.resolutions = 0;
-        JsonDataScript.cursor = 0;
-
-        JsonDataScript.playerName = "TestName";
-        JsonDataScript.matchDifficulty = 0;
-        JsonDataScript.healthMulti = 0;
-        JsonDataScript.moneyMulti = 0;
-        JsonDataScript.unlimmitedAmmo = false;
-
+        JsonDataScript.securityCode = new string[10];
         string json = JsonUtility.ToJson(JsonDataScript);
         File.WriteAllText(Application.persistentDataPath + "/Settings.json", json.ToString());
-        Debug.Log(Application.persistentDataPath + "/Settings.json");
     }
     private void Load()
     {
-        string dataPath = Application.persistentDataPath +"Settings.json";
+        string dataPath = Application.persistentDataPath + "/Settings.json";
         string dataAsJson = File.ReadAllText(dataPath);
         JsonDataScript = JsonUtility.FromJson<JsonSaveGameSettings>(dataAsJson);
     }
 
+    public void LoadData()
+    {
+        Load();
+    }
 
+    public void SaveData()
+    {
+        Save();
+    }
+
+    public void SetGameSettings()
+    {
+        if (JsonDataScript.fullscreen)
+        {
+            Screen.SetResolution(JsonDataScript.resolutions.x, JsonDataScript.resolutions.y, true);
+        }
+        else
+        {
+            Screen.SetResolution(JsonDataScript.resolutions.x, JsonDataScript.resolutions.y, false);
+        }
+        QualitySettings.SetQualityLevel(JsonDataScript.graphics);
+    }
 }
 
 public class JsonSaveGameSettings
 {
-    //Game Settings
-    public int resolutions;
+    //>>> Game Settings
+    //General
+    public bool fullscreen;
+    public Vector2Int resolutions;
+    public int graphics;
     public int cursor;
+    //Audio
+    public float masterVolume;
+    public float musicVolume;
+    public float sfxVolume;
 
-    //Match Settings
+
+
+    //>>> Match Settings
     public string playerName;
     public float matchDifficulty;
     public float healthMulti;
     public float moneyMulti;
     public bool unlimmitedAmmo;
+
+    public string[] securityCode;
 }

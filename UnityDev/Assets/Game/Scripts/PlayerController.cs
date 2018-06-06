@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour {
         {
             health += m_HealthRegen_Upgrade * Time.deltaTime;
         }
-        Debug.Log(m_HealthRegen_Upgrade);
         dpadHorizontal = Input.GetAxis("DPadHorizontal");
         dpadVertical = Input.GetAxis("DPadVertical");
         if (Input.GetKeyDown(KeyCode.B) || Input.GetButtonDown("Select"))

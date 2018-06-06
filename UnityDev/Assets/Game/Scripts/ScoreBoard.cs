@@ -31,11 +31,11 @@ public class ScoreBoard : MonoBehaviour
     {
         JsonDataScript.jsonScoreDataScript = jsonScript;
         string json = JsonUtility.ToJson(JsonDataScript);
-        File.WriteAllText("Assets/Score.json", json.ToString());
+        File.WriteAllText(Application.persistentDataPath + "/Score.json", json.ToString());
     }
     private void Load()
     {
-        string dataPath = "Assets/Score.json";
+        string dataPath =Application.persistentDataPath + "/Score.json";
         string dataAsJson = File.ReadAllText(dataPath);
         JsonDataScript = JsonUtility.FromJson<JsonSaveScoreData>(dataAsJson);
     }
