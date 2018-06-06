@@ -49,6 +49,13 @@ public class Settings : MonoBehaviour
         }
         QualitySettings.SetQualityLevel(JsonDataScript.graphics);
     }
+
+    //CreateFile
+    public void CreateFile()
+    {
+        string json = JsonUtility.ToJson(JsonDataScript);
+        File.WriteAllText(Application.persistentDataPath + "/Settings.json", json.ToString());
+    }
 }
 
 public class JsonSaveGameSettings

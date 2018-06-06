@@ -11,7 +11,7 @@ public class ScoreBoard : MonoBehaviour
 
     private void Start()
     {
-        //Save();
+        Save();
         Load();
     }
 

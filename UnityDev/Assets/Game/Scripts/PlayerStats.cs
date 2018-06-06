@@ -17,6 +17,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
+        Save();
         xpNeeded = new float[100];
         for (int i = 0; i < xpNeeded.Length; i++)
         {
@@ -54,6 +55,9 @@ public class PlayerStats : MonoBehaviour
     {
         JsonDataScript.lastPerk = currentPerk;
         JsonDataScript.totalKills = totalKills;
+        JsonDataScript.perks = new string[5];
+        JsonDataScript.perkXP = new float[5];
+        JsonDataScript.perkLevel = new int[5];
         for (int i = 0; i < perkXPCurrent.Length; i++)
         {
             JsonDataScript.perkLevel[i] = perkLevel[i];
