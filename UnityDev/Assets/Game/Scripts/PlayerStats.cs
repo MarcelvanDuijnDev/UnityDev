@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    [SerializeField]private bool isMenu;
     private JsonSavePlayerSettings JsonDataScript = new JsonSavePlayerSettings();
     [HideInInspector]
     public int lastPerk;
@@ -17,38 +18,44 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
-        Save();
-        xpNeeded = new float[100];
-        for (int i = 0; i < xpNeeded.Length; i++)
+        if (!isMenu)
         {
-            xpNeeded[i] = i * 100;
+            Save();
+            xpNeeded = new float[100];
+            for (int i = 0; i < xpNeeded.Length; i++)
+            {
+                xpNeeded[i] = i * 100;
+            }
+            Load();
         }
-        Load();
     }
 
     private void Update()
     {
-        for (int i = 0; i < xpNeeded.Length; i++)
+        if (!isMenu)
         {
-            if (perkLevel[0] == i && perkXPCurrent[0] >= xpNeeded[i])
+            for (int i = 0; i < xpNeeded.Length; i++)
             {
-                perkXPCurrent[0] = 0;
-                perkLevel[0]++;
+                if (perkLevel[0] == i && perkXPCurrent[0] >= xpNeeded[i])
+                {
+                    perkXPCurrent[0] = 0;
+                    perkLevel[0]++;
+                    Save();
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
                 Save();
             }
-        }
 
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            Save();
-        }
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                perkXPCurrent[currentPerk] += 100;
+            }
 
-        if(Input.GetKeyDown(KeyCode.O))
-        {
-            perkXPCurrent[currentPerk] += 100;
+            currentPerkName = JsonDataScript.perks[currentPerk];
         }
-
-        currentPerkName = JsonDataScript.perks[currentPerk];
     }
 
     private void Save()
@@ -96,6 +103,12 @@ public class PlayerStats : MonoBehaviour
     public void AddKill()
     {
         totalKills++;
+    }
+
+    public void CreateFile()
+    {
+        string json = JsonUtility.ToJson(JsonDataScript);
+        File.WriteAllText(Application.persistentDataPath + "/PlayerStats.json", json.ToString());
     }
 }
 

@@ -1670,7 +1670,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &227888819
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3904,7 +3904,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &505624345
 GameObject:
@@ -13975,9 +13975,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1305483466}
+  - component: {fileID: 1305483469}
   - component: {fileID: 1305483465}
-  - component: {fileID: 1305483467}
   - component: {fileID: 1305483468}
+  - component: {fileID: 1305483467}
+  - component: {fileID: 1305483471}
+  - component: {fileID: 1305483470}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -14033,6 +14036,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GeneralSettings: {fileID: 986594637}
   m_QualitySettings: {fileID: 1772518279}
+--- !u!114 &1305483469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1305483464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac081af10dfb984997a354aba5439cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1305483470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1305483464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de7b53317f15be4885a8b340006ef98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jsonScript: []
+  save: 0
+  reset: 0
+--- !u!114 &1305483471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1305483464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ccafb11dcbba64dbb5b27dc75ae49f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMenu: 1
+  lastPerk: 0
+  perkLevel: 0000000000000000000000000000000000000000
+  xpNeeded:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  currentPerkName: 
 --- !u!1 &1397852012
 GameObject:
   m_ObjectHideFlags: 0
@@ -14576,7 +14625,7 @@ Transform:
   m_Children:
   - {fileID: 177850796}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1529311639
 GameObject:
@@ -15683,7 +15732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1603455626
 AudioListener:
   m_ObjectHideFlags: 0
@@ -15745,7 +15794,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1639939426
 GameObject:
@@ -15811,7 +15860,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 1603455628}
+  m_Camera: {fileID: 227888821}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -15837,7 +15886,7 @@ RectTransform:
   - {fileID: 188105052}
   - {fileID: 505624346}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -19128,5 +19177,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

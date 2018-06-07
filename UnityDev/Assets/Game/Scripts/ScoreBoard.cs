@@ -72,6 +72,12 @@ public class ScoreBoard : MonoBehaviour
         int scoreT = this.gameObject.GetComponent<PlayerStatsCurrentGame>().score;
         SaveScore(mapID, scoreT);
     }
+
+    public void CreateFile()
+    {
+        string json = JsonUtility.ToJson(JsonDataScript);
+        File.WriteAllText(Application.persistentDataPath + "/Score.json", json.ToString());
+    }
 }
 
 public class JsonSaveScoreData

@@ -9,7 +9,7 @@ public class Settings : MonoBehaviour
 
     private void Start()
     {
-        print(Application.persistentDataPath);
+        
         Load();
         SetGameSettings();
     }
