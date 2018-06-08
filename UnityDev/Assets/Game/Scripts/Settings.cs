@@ -48,11 +48,19 @@ public class Settings : MonoBehaviour
             Screen.SetResolution(JsonDataScript.resolutions.x, JsonDataScript.resolutions.y, false);
         }
         QualitySettings.SetQualityLevel(JsonDataScript.graphics);
+        QualitySettings.antiAliasing = 4;  // 0, 2, 4, 8
+        QualitySettings.realtimeReflectionProbes = true;  // bool
+        QualitySettings.shadowDistance = 1000;
+        QualitySettings.vSyncCount = 60;
+        QualitySettings.anisotropicFiltering = AnisotropicFiltering.Enable;
     }
 
     //CreateFile
     public void CreateFile()
     {
+        JsonDataScript.fullscreen = true;
+        JsonDataScript.resolutions = new Vector2Int(1920, 1080);
+        JsonDataScript.graphics = 5;
         string json = JsonUtility.ToJson(JsonDataScript);
         File.WriteAllText(Application.persistentDataPath + "/Settings.json", json.ToString());
     }

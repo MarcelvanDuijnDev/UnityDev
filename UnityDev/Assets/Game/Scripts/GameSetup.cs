@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using System.IO;
 using UnityEngine;
 
@@ -16,13 +17,7 @@ public class GameSetup : MonoBehaviour
         scoreBoardScript = this.gameObject.GetComponent<ScoreBoard>();
 
         LoadData();
-
     }
-	
-	void Update () 
-    {
-		
-	}
 
     public void LoadData()
     {
@@ -35,8 +30,9 @@ public class GameSetup : MonoBehaviour
         }
         catch
         {
-            Debug.Log("Not Very Nice");
+            Debug.Log("Settings.json Created");
             settingsScript.CreateFile();
+            SceneManager.LoadScene(0);
         }
         //PlayerStats
         try
@@ -47,8 +43,9 @@ public class GameSetup : MonoBehaviour
         }
         catch
         {
-            Debug.Log("Not Very Nice");
+            Debug.Log("PlayerStats.json Created");
             playerStatsScript.CreateFile();
+            SceneManager.LoadScene(0);
         }
         //ScoreBoard
         try
@@ -59,8 +56,9 @@ public class GameSetup : MonoBehaviour
         }
         catch
         {
-            Debug.Log("Not Very Nice");
+            Debug.Log("Score.json Created");
             scoreBoardScript.CreateFile();
+            SceneManager.LoadScene(0);
         }
     }
 }

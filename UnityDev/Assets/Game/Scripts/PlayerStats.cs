@@ -20,7 +20,6 @@ public class PlayerStats : MonoBehaviour
     {
         if (!isMenu)
         {
-            Save();
             xpNeeded = new float[100];
             for (int i = 0; i < xpNeeded.Length; i++)
             {
@@ -60,16 +59,10 @@ public class PlayerStats : MonoBehaviour
 
     private void Save()
     {
-        JsonDataScript.lastPerk = currentPerk;
+        JsonDataScript.perkLevel = perkLevel;
+        JsonDataScript.perkXP = perkXPCurrent;
         JsonDataScript.totalKills = totalKills;
-        JsonDataScript.perks = new string[5];
-        JsonDataScript.perkXP = new float[5];
-        JsonDataScript.perkLevel = new int[5];
-        for (int i = 0; i < perkXPCurrent.Length; i++)
-        {
-            JsonDataScript.perkLevel[i] = perkLevel[i];
-            JsonDataScript.perkXP[i] = perkXPCurrent[i];
-        }
+        JsonDataScript.lastPerk = currentPerk;
         string json = JsonUtility.ToJson(JsonDataScript);
         File.WriteAllText(Application.persistentDataPath + "/PlayerStats.json", json.ToString());
     }
@@ -107,8 +100,13 @@ public class PlayerStats : MonoBehaviour
 
     public void CreateFile()
     {
-        string json = JsonUtility.ToJson(JsonDataScript);
-        File.WriteAllText(Application.persistentDataPath + "/PlayerStats.json", json.ToString());
+        JsonDataScript.perks = new string[3];
+        JsonDataScript.perks[0] = "Commando";
+        JsonDataScript.perks[1] = "Swat";
+        JsonDataScript.perks[2] = "GunSlinger";
+        JsonDataScript.perkLevel = new int[3];
+        JsonDataScript.perkXP = new float[3];
+        Save();
     }
 }
 

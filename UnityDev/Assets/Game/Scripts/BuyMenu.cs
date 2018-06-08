@@ -15,6 +15,14 @@ public class BuyMenu : MonoBehaviour
     public GameObject buyMenu;
     public int prestige;
 
+    // Prestige Upgrades
+    private int magCapacity, ammoCapacity;
+    private float damage, maxHealth, maxArmor, healthRegen;
+    private float movement, jumpheight;
+
+    private float extraMovement;
+    private float extraJumpHeight;
+
 	void Start () 
     {
         playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -40,7 +48,7 @@ public class BuyMenu : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < buttons.Length - 1; i++)
+        for (int i = 0; i < buttons.Length - 3; i++)
         {
             buttonsCostText[i].text = prices[i].ToString();
             prices[i] = 100 * (bought[i] + 1);
@@ -56,30 +64,37 @@ public class BuyMenu : MonoBehaviour
         }
 
         //Prestige
-        if(prestige == 0)
+        for (int i = 6; i < 9; i++)
         {
-            prices[8] = 1000;
-            if (bought[8] == 1)
+            buttonsCostText[i].text = prices[i].ToString();
+            if (prices[i] <= playerScript.money)
             {
-                for (int i = 0; i < 7; i++)
-                {
-                    bought[i] = 0;
-                }
-                prestige = 1;
+                buttons[i].interactable = true;
             }
-        }
-        buttonsCostText[8].text = prices[8].ToString();
-        if (prices[8] <= playerScript.money)
-        {
-            buttons[8].interactable = true;
-        }
-        else
-        {
-            buttons[8].interactable = false;
+            else
+            {
+                buttons[i].interactable = false;
+            }
+            prices[i] = 1000 * (bought[i] + 1);
         }
 
-        playerControllerScript.Upgrade(bought[3] * 5, bought[4] * 2.5f, bought[5] * 0.25f, bought[6] * 0.5f, bought[6] * 0.5f, bought[7] * 0.2f);
-        weaponScript.Upgrade(bought[0] * 5, bought[1] * 10, bought[2] * 5);
+        magCapacity = bought[0] * 5;
+        ammoCapacity = bought[1] * 10;
+        damage = bought[2] * 5;
+        maxHealth = bought[3] * 5;
+        maxArmor = bought[4] * 2.5f;
+        healthRegen = bought[5] * 0.25f;
+        movement = extraMovement;
+        jumpheight = extraJumpHeight;
+
+
+
+
+
+        playerControllerScript.Upgrade(maxHealth, maxArmor, healthRegen, movement, movement, jumpheight);
+        weaponScript.Upgrade(magCapacity, ammoCapacity, damage);
+
+
 
 	}
 
@@ -89,3 +104,30 @@ public class BuyMenu : MonoBehaviour
         bought[upgradeID] += 1;
     }
 }
+
+
+/*
+    mag     ammo    damage
+    health  armor   Hregen
+
+1:      Movementspeed   FireRate        BonusHeadshotDamage
+2:      +Money          reloadspeed     every .. shot*damage
+3:      
+
+
+
+
+
+
+    movementspeed
+    melee damage
+    reloadspeed
+    firerate
+    every .. shot 2x damage
+    bonus headshot damage
+    more money
+    stacking damage when headshot
+
+
+
+*/
