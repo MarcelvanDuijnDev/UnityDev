@@ -106,6 +106,9 @@ public class PlayerStats : MonoBehaviour
         JsonDataScript.perks[2] = "GunSlinger";
         JsonDataScript.perkLevel = new int[3];
         JsonDataScript.perkXP = new float[3];
+        JsonDataScript.perkXP[0] = 1;
+        JsonDataScript.perkXP[1] = 1;
+        JsonDataScript.perkXP[2] = 1;
         Save();
     }
 }
