@@ -36,7 +36,7 @@ public class WaveHandler : MonoBehaviour
 
     private void Start()
     {
-        Random.seed = 666;
+        Random.seed = 52453786;
 
         playerScript = this.gameObject.GetComponent<PlayerStatsCurrentGame>();
         objectPoolScript = (ObjectPool_Script)objectPool.GetComponent(typeof(ObjectPool_Script));
@@ -95,6 +95,7 @@ public class WaveHandler : MonoBehaviour
     void SpawnEnemy(int enemyID)
     {
         int spawnPos = Random.Range(0, spawnPositions.Length);
+        Debug.Log(spawnPos);
         for (int i = 0; i < objectPoolScript.objects.Count; i++)
         {
             if (!objectPoolScript.objects[i].activeInHierarchy)
