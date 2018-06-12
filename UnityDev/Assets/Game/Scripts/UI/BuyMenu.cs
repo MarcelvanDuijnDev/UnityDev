@@ -9,6 +9,7 @@ public class BuyMenu : MonoBehaviour
     PlayerController playerControllerScript;
     Weapon weaponScript;
     public Text[] buttonsCostText;
+    public Text[] prestigeText;
     public Button[] buttons;
     public int[] prices;
     public int[] bought;
@@ -87,7 +88,15 @@ public class BuyMenu : MonoBehaviour
         movement = extraMovement;
         jumpheight = extraJumpHeight;
 
-
+        for (int i = 0; i < prestigeText.Length; i++)
+        {
+            if (prestige == 0)
+            {
+                prestigeText[0].text = "Double Jump";
+                prestigeText[1].text = "...";
+                prestigeText[2].text = "..";
+            }
+        }
 
 
 
@@ -127,6 +136,7 @@ public class BuyMenu : MonoBehaviour
     bonus headshot damage
     more money
     stacking damage when headshot
+    double jump
 
 
 
