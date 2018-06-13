@@ -95,7 +95,6 @@ public class WaveHandler : MonoBehaviour
     void SpawnEnemy(int enemyID)
     {
         int spawnPos = Random.Range(0, spawnPositions.Length);
-        Debug.Log(spawnPos);
         for (int i = 0; i < objectPoolScript.objects.Count; i++)
         {
             if (!objectPoolScript.objects[i].activeInHierarchy)

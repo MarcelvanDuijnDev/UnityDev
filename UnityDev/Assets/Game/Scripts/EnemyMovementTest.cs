@@ -8,10 +8,11 @@ public class EnemyMovementTest : MonoBehaviour
     [SerializeField]private float m_Speed;
     private GameObject target;
     private NavMeshAgent agent;
-
+    public Animator anim;
 
 	void Start () 
     {
+        anim = GetComponent<Animator>();
         agent = this.gameObject.GetComponent<NavMeshAgent>();
         target = GameObject.Find("Player");
 	}
@@ -19,5 +20,6 @@ public class EnemyMovementTest : MonoBehaviour
 	void Update () 
     {
         agent.destination = target.transform.position;
+        anim.SetBool("Walking", true);
 	}
 }
