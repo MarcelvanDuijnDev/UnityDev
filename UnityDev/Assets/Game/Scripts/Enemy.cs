@@ -43,7 +43,8 @@ public class Enemy : MonoBehaviour
         playerScript.AddKill();
         playerScript.AddXP(50);
         deadActivate = true;
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
+        this.gameObject.GetComponent<EnemyMovementTest>().dead = true;
     }
 
     void HandleAnimations()

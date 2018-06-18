@@ -13,7 +13,7 @@ public class ObjectPool_Script : MonoBehaviour {
         for (int i = 0; i < pooledAmount; i++)
         {
             GameObject obj = (GameObject)Instantiate(prefabGameObject);
-            obj.transform.parent = gameObject.transform;
+            //obj.transform.parent = gameObject.transform;
             obj.SetActive(false);
             objects.Add(obj);
         }
