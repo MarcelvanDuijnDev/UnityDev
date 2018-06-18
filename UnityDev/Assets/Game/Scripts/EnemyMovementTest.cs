@@ -19,8 +19,6 @@ public class EnemyMovementTest : MonoBehaviour
         agent = this.gameObject.GetComponent<NavMeshAgent>();
         target = GameObject.Find("Player");
         int setWalkingState = Random.Range(0, 2);
-        Debug.Log(setWalkingState);
-        anim.SetInteger("DyingState", Random.Range(1, 11));
         if (setWalkingState == 0)
         {
             m_Speed = Random.Range(2,5);
@@ -33,12 +31,13 @@ public class EnemyMovementTest : MonoBehaviour
             m_Speed = Random.Range(6,10);
             anim.SetBool("IsRunning", true);
             anim.SetTrigger("Running");
-            anim.SetInteger("RunningState", Random.Range(1, 3));
+            anim.SetInteger("RunningState", 3);//Random.Range(1, 3));
         }
 	}
 	
 	void Update () 
     {
+        anim.SetBool("DoAFlip", true);
         if (!setDead)
         {
             agent.destination = target.transform.position;
@@ -48,6 +47,7 @@ public class EnemyMovementTest : MonoBehaviour
             {
                 anim.SetBool("IsWalking", false);
                 anim.SetBool("IsRunning", false);
+                anim.SetInteger("DyingState", Random.Range(1, 11));
                 anim.SetTrigger("Dead");
                 setDead = true;
             }
