@@ -15,11 +15,12 @@ public class EnemyMovementTest : MonoBehaviour
         anim = GetComponent<Animator>();
         agent = this.gameObject.GetComponent<NavMeshAgent>();
         target = GameObject.Find("Player");
+        anim.SetTrigger("Walking");
+        anim.SetInteger("WalkingState", 1);
 	}
 	
 	void Update () 
     {
         agent.destination = target.transform.position;
-        anim.SetBool("Walking", true);
 	}
 }
