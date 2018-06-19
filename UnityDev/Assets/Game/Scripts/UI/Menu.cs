@@ -52,4 +52,10 @@ public class Menu : MonoBehaviour
     {
         optionsMenu.SetActive(true);
     }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
+    }
 }

@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.tag);
+        Debug.Log(other.gameObject.name);
         if(other.gameObject.tag == "AmmoPickup")
         {
             AddAmmo(other.gameObject);
