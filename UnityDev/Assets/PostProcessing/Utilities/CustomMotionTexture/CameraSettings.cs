@@ -24,4 +24,4 @@ public class CameraSettings : MonoBehaviour
 
 //[HelpURL("www.google.nl")]
 //[DisallowMultipleComponent]
-//    [TextArea]
+//[TextArea]
