@@ -6,6 +6,9 @@ using UnityEngine;
 public class CameraSettings : MonoBehaviour
 {
     public PostProcessingProfile test;
+    [SerializeField]
+    private bool m_OnDrugs;
+    private float m_HueShiftValue;
 
 	void Update ()
     {
@@ -17,6 +20,24 @@ public class CameraSettings : MonoBehaviour
             var amount = test.depthOfField.settings;
             amount.focusDistance = dist;
             test.depthOfField.settings = amount;
+        }
+
+        if (m_OnDrugs)
+        {
+            m_HueShiftValue -= 100 * Time.deltaTime;
+            if(m_HueShiftValue <= -180)
+            {
+                m_HueShiftValue = 180;
+            }
+            var amount = test.colorGrading.settings;
+            amount.basic.hueShift = m_HueShiftValue;
+            test.colorGrading.settings = amount;
+        }
+        else
+        {
+            var amount = test.colorGrading.settings;
+            amount.basic.hueShift = 0;
+            test.colorGrading.settings = amount;
         }
     }
 }

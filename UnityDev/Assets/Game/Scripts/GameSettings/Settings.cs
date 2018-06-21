@@ -80,6 +80,9 @@ public class JsonSaveGameSettings
     public float masterVolume;
     public float musicVolume;
     public float sfxVolume;
+    //Graphics
+    public bool depthOfField;
+    public bool motionBlur;
 
 
 
