@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.PostProcessing;
+using UnityEngine.SceneManagement;
 using System.IO;
 using UnityEngine;
 
@@ -12,11 +14,11 @@ public class Settings : MonoBehaviour
         
         Load();
         SetGameSettings();
+        Save();
     }
 
     private void Save()
     {
-        JsonDataScript.securityCode = new string[10];
         string json = JsonUtility.ToJson(JsonDataScript);
         File.WriteAllText(Application.persistentDataPath + "/Settings.json", json.ToString());
     }
@@ -37,17 +39,30 @@ public class Settings : MonoBehaviour
         Save();
     }
 
+    public void ApplyNewSettings()
+    {
+        bool restartScene = true;
+        Save();
+        SetGameSettings();
+        if(restartScene)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
     public void SetGameSettings()
     {
         if (JsonDataScript.fullscreen)
         {
-            Screen.SetResolution(JsonDataScript.resolutions.x, JsonDataScript.resolutions.y, true);
+            Screen.SetResolution(JsonDataScript.resolutionX, JsonDataScript.resolutionY, true);
         }
         else
         {
-            Screen.SetResolution(JsonDataScript.resolutions.x, JsonDataScript.resolutions.y, false);
+            Screen.SetResolution(JsonDataScript.resolutionX, JsonDataScript.resolutionY, false);
         }
         QualitySettings.SetQualityLevel(JsonDataScript.graphics);
+        SetGraphics();
+
         /*
         QualitySettings.antiAliasing = 4;  // 0, 2, 4, 8
         QualitySettings.realtimeReflectionProbes = true;  // bool
@@ -56,12 +71,27 @@ public class Settings : MonoBehaviour
         QualitySettings.anisotropicFiltering = AnisotropicFiltering.Enable;
         */
     }
+    private void SetGraphics()
+    {
+        if (GameObject.Find("Player_Camera") != null)
+        {
+            GameObject player = GameObject.Find("Player_Camera");
+            PostProcessingBehaviour post = player.GetComponent<PostProcessingBehaviour>();
+            if (JsonDataScript.depthOfField){post.profile.depthOfField.enabled = true;}
+            else{post.profile.depthOfField.enabled = false;}
+            if (JsonDataScript.motionBlur){post.profile.motionBlur.enabled = true;}
+            else{post.profile.motionBlur.enabled = false;}
+            if (JsonDataScript.bloom) { post.profile.bloom.enabled = true; }
+            else { post.profile.bloom.enabled = false; }
+        }
+    }
 
     //CreateFile
     public void CreateFile()
     {
         JsonDataScript.fullscreen = true;
-        JsonDataScript.resolutions = new Vector2Int(1920, 1080);
+        JsonDataScript.resolutionX = 1920;
+        JsonDataScript.resolutionY = 1080;
         JsonDataScript.graphics = 5;
         string json = JsonUtility.ToJson(JsonDataScript);
         File.WriteAllText(Application.persistentDataPath + "/Settings.json", json.ToString());
@@ -73,18 +103,20 @@ public class JsonSaveGameSettings
     //>>> Game Settings
     //General
     public bool fullscreen;
-    public Vector2Int resolutions;
+    public int resolutionX;
+    public int resolutionY;
     public int graphics;
     public int cursor;
+
     //Audio
     public float masterVolume;
     public float musicVolume;
     public float sfxVolume;
+
     //Graphics
     public bool depthOfField;
     public bool motionBlur;
-
-
+    public bool bloom;
 
     //>>> Match Settings
     public string playerName;
@@ -92,6 +124,4 @@ public class JsonSaveGameSettings
     public float healthMulti;
     public float moneyMulti;
     public bool unlimmitedAmmo;
-
-    public string[] securityCode;
 }
