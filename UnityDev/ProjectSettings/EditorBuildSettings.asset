@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/MainMenu.unity
     guid: cdd0ec64d35403b4bbbf50f1c472aac1
   - enabled: 1
-    path: Assets/Game/Scenes/Map_1.unity
-    guid: 26c576a32c6493149af7feb16e63b169
-  - enabled: 1
     path: Assets/Game/Scenes/Game_Intro.unity
     guid: e73943ca5705f44408bf33727d914e58
+  - enabled: 1
+    path: Assets/Game/Scenes/Wave_Survival_Map_1.unity
+    guid: 26c576a32c6493149af7feb16e63b169
