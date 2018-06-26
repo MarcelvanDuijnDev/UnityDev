@@ -9,7 +9,7 @@ public class Unity_Assistent : EditorWindow
 {
     GameObject selectedObject;
     GameObject checkSelectedGameObject;
-    bool settings, objectSettings, addScripts; //Top Horizontal Buttons
+    bool settings, objectSettings, addScripts, terrainEditor; //Top Horizontal Buttons
     bool change_Color; //Button Options
     bool objectInfo, objectComponents, objectQuikChanges; //ObjectSettings Options
 
@@ -24,6 +24,9 @@ public class Unity_Assistent : EditorWindow
     Vector2 scrollPos;
 
     Color matColor = Color.white;
+
+    //Terrain Editor
+    GameObject terrainObject;
 
 
     [MenuItem("Tools/Unity_Assistent")]
@@ -41,11 +44,19 @@ public class Unity_Assistent : EditorWindow
         {
             objectSettings = !objectSettings;
             settings = false;
+            terrainEditor = false;
         }
         if (GUILayout.Button("Settings"))
         {
             settings = !settings;
             objectSettings = false;
+            terrainEditor = false;
+        }
+        if (GUILayout.Button("Terrain Editor"))
+        {
+            terrainEditor = !terrainEditor;
+            objectSettings = false;
+            settings = false;
         }
         GUILayout.EndHorizontal();
         if (settings)
@@ -138,13 +149,18 @@ public class Unity_Assistent : EditorWindow
             }
             GUILayout.EndVertical();
 
-
-
-
-
-
-
             GUILayout.EndScrollView();
+        }
+
+        //Terrain Editor
+        if (terrainEditor)
+        {
+            GUILayout.BeginVertical("Box");
+            GUILayout.BeginHorizontal("box");
+            GUILayout.Label("Terrain Editor", EditorStyles.boldLabel);
+
+            GUILayout.EndHorizontal();
+            GUILayout.EndVertical();
         }
     }
 
