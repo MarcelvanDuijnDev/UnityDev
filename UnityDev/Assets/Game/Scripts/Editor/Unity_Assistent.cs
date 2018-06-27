@@ -9,6 +9,7 @@ using UnityEditor;
 public class Unity_Assistent : EditorWindow
 {
     Unity_Assistent_JsonSave JsonFile = new Unity_Assistent_JsonSave();
+    Unity_SaveTerrain JsonFileTerrain = new Unity_SaveTerrain();
 
     GameObject selectedObject;
     GameObject checkSelectedGameObject;
@@ -236,6 +237,7 @@ public class Unity_Assistent : EditorWindow
             SetFilter();
         }
         selectedObject = Selection.activeGameObject;
+        Debug.Log(selectedObject.GetInstanceID());
 
         if (selectedObject != checkSelectedGameObject && selectedObject != null)
         {
@@ -279,6 +281,9 @@ public class Unity_Assistent : EditorWindow
             //Graphics
             terrainObject.treeDistance = m_TreeDistance;
         }
+
+        object getObjTest = EditorUtility.InstanceIDToObject(-1238);
+        Debug.Log(getObjTest);
     }
 
     void GetTerrainInfo()
@@ -583,5 +588,9 @@ public class Unity_Assistent : EditorWindow
 
 class Unity_Assistent_JsonSave
 {
-    public string testString = "Save Data";
+}
+
+class Unity_SaveTerrain
+{
+    public int[] Terrain_ObjectID;
 }
