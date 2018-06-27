@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.IO;
 using System;
 using UnityEngine;
 using UnityEditor;
 
 public class Unity_Assistent : EditorWindow
 {
+    Unity_Assistent_JsonSave JsonFile = new Unity_Assistent_JsonSave();
+
     GameObject selectedObject;
     GameObject checkSelectedGameObject;
     bool settings, objectSettings, addScripts, terrainEditor; //Top Horizontal Buttons
@@ -26,8 +29,12 @@ public class Unity_Assistent : EditorWindow
     Color matColor = Color.white;
 
     //Terrain Editor
-    GameObject terrainObject;
-
+    bool terrainSettings,terrainFlora;
+    bool terrainActive;
+    Terrain terrainObject;
+    GameObject[] terrainObjects;
+    Vector3 vector3Variable;
+    float m_TreeDistance;
 
     [MenuItem("Tools/Unity_Assistent")]
     static void Init()
@@ -59,29 +66,8 @@ public class Unity_Assistent : EditorWindow
             settings = false;
         }
         GUILayout.EndHorizontal();
-        if (settings)
-        {
-            GUILayout.BeginHorizontal("box");
-            GUILayout.BeginVertical("box");
-            GUILayout.Label("Settings", EditorStyles.boldLabel);
-            GUILayout.EndVertical();
-            GUILayout.EndHorizontal();
 
-            GUILayout.BeginVertical("Box");
-            if (GUILayout.Button("Scripts"))
-            {
-                addScripts = !addScripts;
-            }
-            if (addScripts)
-            {
-                if (GUILayout.Button("Add"))
-                {
-                    addScripts = !addScripts;
-                }
-            }
-            GUILayout.EndVertical();
-        }
-
+        //Object Settings
         if (objectSettings)
         {
             //Object Settings
@@ -152,15 +138,76 @@ public class Unity_Assistent : EditorWindow
             GUILayout.EndScrollView();
         }
 
+        //Settings
+        if (settings)
+        {
+            GUILayout.BeginHorizontal("box");
+            GUILayout.BeginVertical("box");
+            GUILayout.Label("Settings", EditorStyles.boldLabel);
+            GUILayout.EndVertical();
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginVertical("Box");
+            if (GUILayout.Button("Save Settings"))
+            {
+                Save();
+                Debug.Log("Saved");
+            }
+            if (GUILayout.Button("Load Settings"))
+            {
+                Load();
+            }
+            GUILayout.EndVertical();
+        }
+
         //Terrain Editor
         if (terrainEditor)
         {
-            GUILayout.BeginVertical("Box");
             GUILayout.BeginHorizontal("box");
+            GUILayout.BeginVertical("Box");
             GUILayout.Label("Terrain Editor", EditorStyles.boldLabel);
-
-            GUILayout.EndHorizontal();
+            objectName = EditorGUILayout.TextField("Name", objectName);
             GUILayout.EndVertical();
+            GUILayout.EndHorizontal();
+
+            if (terrainActive)
+            {
+                GUILayout.BeginVertical("Box");
+                if (GUILayout.Button("Terrain Settings"))
+                {
+                    terrainSettings = !terrainSettings;
+                }
+                if (terrainSettings)
+                {
+                    GUILayout.BeginVertical("Box");
+                    GUILayout.Label("Settings", EditorStyles.boldLabel);
+                    vector3Variable = terrainObject.terrainData.size;
+                    vector3Variable = EditorGUILayout.Vector3Field("TerrainSize", vector3Variable);
+                    GUILayout.EndVertical();
+                    GUILayout.BeginVertical("Box");
+                    GUILayout.Label("Graphics", EditorStyles.boldLabel);
+                    m_TreeDistance = EditorGUILayout.Slider("Tree Distance",m_TreeDistance, 0,2000);
+                    GUILayout.EndVertical();
+                }
+                GUILayout.EndVertical();
+                GUILayout.BeginVertical("Box");
+                if (GUILayout.Button("Terrain Flora"))
+                {
+                    terrainFlora = !terrainFlora;
+                }
+                if (terrainFlora)
+                {
+                    if (GUILayout.Button("Generate Trees"))
+                    {
+                        
+                    }
+                }
+                GUILayout.EndVertical();
+            }
+            else
+            {
+                GUILayout.Label("Select Gameobject with a Terrain Component", EditorStyles.boldLabel);
+            }
         }
     }
 
@@ -197,7 +244,6 @@ public class Unity_Assistent : EditorWindow
             transformRotation = selectedObject.transform.eulerAngles;
             transformSize = selectedObject.transform.localScale;
             checkSelectedGameObject = selectedObject;
-            Debug.Log("1");
         }
 
         if (selectedObject != null)
@@ -209,8 +255,49 @@ public class Unity_Assistent : EditorWindow
             selectedObject.transform.position = new Vector3(transformPosition.x, transformPosition.y, transformPosition.z);
             selectedObject.transform.eulerAngles = new Vector3(transformRotation.x, transformRotation.y, transformRotation.z);
             selectedObject.transform.localScale = new Vector3(transformSize.x, transformSize.y, transformSize.z);
-            Debug.Log("2");
         }
+
+        //Terrain Editor
+        if (selectedObject != null && selectedObject.GetComponent<Terrain>() != null)
+        {
+            if(!terrainActive)
+            {
+                GetTerrainInfo();
+            }
+            terrainActive = true;
+        }
+        else
+        {
+            terrainActive = false;
+        }
+        //
+        if (terrainActive)
+        {
+            terrainObject = selectedObject.GetComponent<Terrain>();
+            terrainObject.terrainData.size = vector3Variable;
+
+            //Graphics
+            terrainObject.treeDistance = m_TreeDistance;
+        }
+    }
+
+    void GetTerrainInfo()
+    {
+        terrainObject = selectedObject.GetComponent<Terrain>();
+        vector3Variable = terrainObject.terrainData.size;
+        m_TreeDistance = terrainObject.treeDistance;
+    }
+
+    private void Save()
+    {
+        string json = JsonUtility.ToJson(JsonFile);
+        File.WriteAllText(Application.persistentDataPath + "/Unity_AssistentSave.json", json.ToString());
+    }
+    private void Load()
+    {
+        string dataPath = Application.persistentDataPath + "/Unity_AssistentSave.json";
+        string dataAsJson = File.ReadAllText(dataPath);
+        JsonFile = JsonUtility.FromJson<Unity_Assistent_JsonSave>(dataAsJson);
     }
 
     void GetComponents(string name)
@@ -493,3 +580,8 @@ public class Unity_Assistent : EditorWindow
 }
 
 //GUILayout.Toolbar
+
+class Unity_Assistent_JsonSave
+{
+    public string testString = "Save Data";
+}

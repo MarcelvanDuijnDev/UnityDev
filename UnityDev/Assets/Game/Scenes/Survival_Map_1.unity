@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1.15
+  m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -603,7 +603,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4100502326389732, guid: 7ef9b5a3102bdf24b809e266be0dafa9, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.9538905
+      value: 0.95389044
       objectReference: {fileID: 0}
     - target: {fileID: 4100502326389732, guid: 7ef9b5a3102bdf24b809e266be0dafa9, type: 2}
       propertyPath: m_LocalRotation.z
@@ -611,7 +611,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4100502326389732, guid: 7ef9b5a3102bdf24b809e266be0dafa9, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.30015492
+      value: -0.300155
       objectReference: {fileID: 0}
     - target: {fileID: 4100502326389732, guid: 7ef9b5a3102bdf24b809e266be0dafa9, type: 2}
       propertyPath: m_RootOrder
@@ -2881,7 +2881,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4875472031326064, guid: b7c17fbeb4201c74183dcd666e08b3a0, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.8770178
+      value: 0.8770178
       objectReference: {fileID: 0}
     - target: {fileID: 4875472031326064, guid: b7c17fbeb4201c74183dcd666e08b3a0, type: 2}
       propertyPath: m_LocalRotation.z
@@ -2889,7 +2889,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4875472031326064, guid: b7c17fbeb4201c74183dcd666e08b3a0, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.48045787
+      value: 0.48045793
       objectReference: {fileID: 0}
     - target: {fileID: 4875472031326064, guid: b7c17fbeb4201c74183dcd666e08b3a0, type: 2}
       propertyPath: m_RootOrder
@@ -4396,7 +4396,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4100502326389732, guid: 7ef9b5a3102bdf24b809e266be0dafa9, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.019245557
+      value: -0.019245554
       objectReference: {fileID: 0}
     - target: {fileID: 4100502326389732, guid: 7ef9b5a3102bdf24b809e266be0dafa9, type: 2}
       propertyPath: m_RootOrder
@@ -5024,7 +5024,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4100502326389732, guid: 7ef9b5a3102bdf24b809e266be0dafa9, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.18655692
+      value: -0.18655688
       objectReference: {fileID: 0}
     - target: {fileID: 4100502326389732, guid: 7ef9b5a3102bdf24b809e266be0dafa9, type: 2}
       propertyPath: m_RootOrder
@@ -5044,7 +5044,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1936770877632142, guid: 7ef9b5a3102bdf24b809e266be0dafa9, type: 2}
       propertyPath: m_Name
-      value: Rock_C3 (1)
+      value: Rock_C3
       objectReference: {fileID: 0}
     - target: {fileID: 4100502326389732, guid: 7ef9b5a3102bdf24b809e266be0dafa9, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -6615,19 +6615,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4088713418462090, guid: 3a95ed0c85429254c8311e9582bc8034, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.2052808
+      value: 0.20528094
       objectReference: {fileID: 0}
     - target: {fileID: 4088713418462090, guid: 3a95ed0c85429254c8311e9582bc8034, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.9598926
+      value: -0.9598925
       objectReference: {fileID: 0}
     - target: {fileID: 4088713418462090, guid: 3a95ed0c85429254c8311e9582bc8034, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.061535366
+      value: 0.061535448
       objectReference: {fileID: 0}
     - target: {fileID: 4088713418462090, guid: 3a95ed0c85429254c8311e9582bc8034, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.18077475
+      value: 0.18077469
       objectReference: {fileID: 0}
     - target: {fileID: 4088713418462090, guid: 3a95ed0c85429254c8311e9582bc8034, type: 2}
       propertyPath: m_RootOrder
