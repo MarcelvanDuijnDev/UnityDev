@@ -9,7 +9,7 @@ using UnityEditor;
 public class Unity_Assistent : EditorWindow
 {
     Unity_Assistent_JsonSave JsonFile = new Unity_Assistent_JsonSave();
-    Unity_Assistent_SaveTerrain JsonFileTerrain = new Unity_Assistent_SaveTerrain();
+    Unity_SaveTerrain JsonFileTerrain = new Unity_SaveTerrain();
 
     GameObject selectedObject;
     GameObject checkSelectedGameObject;
@@ -30,14 +30,12 @@ public class Unity_Assistent : EditorWindow
     Color matColor = Color.white;
 
     //Terrain Editor
-    bool terrainSettings,terrainFlora, terrainSetup;
+    bool terrainSettings,terrainFlora;
     bool terrainActive;
     Terrain terrainObject;
     GameObject[] terrainObjects;
-    GameObject terrainSaveFile;
     Vector3 vector3Variable;
     float m_TreeDistance;
-    int terrainID;
 
     [MenuItem("Tools/Unity_Assistent")]
     static void Init()
@@ -153,21 +151,12 @@ public class Unity_Assistent : EditorWindow
             GUILayout.BeginVertical("Box");
             if (GUILayout.Button("Save Settings"))
             {
-                Save_Settings();
+                Save();
+                Debug.Log("Saved");
             }
             if (GUILayout.Button("Load Settings"))
             {
-                Load_Settings();
-            }
-            GUILayout.EndVertical();
-            GUILayout.BeginVertical("Box");
-            if (GUILayout.Button("Save Terrain"))
-            {
-                Save_Terrain(terrainID);
-            }
-            if (GUILayout.Button("Load Terrain"))
-            {
-                Load_Terrain(terrainID);
+                Load();
             }
             GUILayout.EndVertical();
         }
@@ -184,30 +173,6 @@ public class Unity_Assistent : EditorWindow
 
             if (terrainActive)
             {
-                GUILayout.BeginVertical("Box");
-                if (GUILayout.Button("Terrain Setup"))
-                {
-                    terrainSetup = !terrainSetup;
-                }
-                if(terrainSetup)
-                {
-                    GUILayout.BeginHorizontal("Box");
-                    if (GUILayout.Button("Create Terrain Files"))
-                    {
-                        GameObject terrainFile = new GameObject("TerrainFiles" + terrainID.ToString());
-                        terrainFile.transform.parent = selectedObject.transform;
-                    }
-                    if (GUILayout.Button("Create new Terrain"))
-                    {
-                        GameObject newTerrain = new GameObject("newTerrain");
-                        newTerrain.AddComponent<Terrain>();
-                        newTerrain.AddComponent<TerrainCollider>();
-                        GameObject terrainFile = new GameObject("TerrainFiles" + terrainID.ToString());
-                        terrainFile.transform.parent = newTerrain.transform;
-                    }
-                    GUILayout.EndHorizontal();
-                }
-                GUILayout.EndVertical();
                 GUILayout.BeginVertical("Box");
                 if (GUILayout.Button("Terrain Settings"))
                 {
@@ -272,6 +237,7 @@ public class Unity_Assistent : EditorWindow
             SetFilter();
         }
         selectedObject = Selection.activeGameObject;
+        Debug.Log(selectedObject.GetInstanceID());
 
         if (selectedObject != checkSelectedGameObject && selectedObject != null)
         {
@@ -314,12 +280,10 @@ public class Unity_Assistent : EditorWindow
 
             //Graphics
             terrainObject.treeDistance = m_TreeDistance;
-
-            //Save
-            Debug.Log(selectedObject.GetInstanceID());
-            terrainID = selectedObject.GetInstanceID();
-            object getObjTest = EditorUtility.InstanceIDToObject(terrainID);
         }
+
+        object getObjTest = EditorUtility.InstanceIDToObject(-1238);
+        Debug.Log(getObjTest);
     }
 
     void GetTerrainInfo()
@@ -329,29 +293,16 @@ public class Unity_Assistent : EditorWindow
         m_TreeDistance = terrainObject.treeDistance;
     }
 
-    //Save Settings
-    private void Save_Settings()
+    private void Save()
     {
         string json = JsonUtility.ToJson(JsonFile);
         File.WriteAllText(Application.persistentDataPath + "/Unity_AssistentSave.json", json.ToString());
     }
-    private void Load_Settings()
+    private void Load()
     {
         string dataPath = Application.persistentDataPath + "/Unity_AssistentSave.json";
         string dataAsJson = File.ReadAllText(dataPath);
         JsonFile = JsonUtility.FromJson<Unity_Assistent_JsonSave>(dataAsJson);
-    }
-    //Save Terrain
-    private void Save_Terrain(int terrainID)
-    {
-        string json = JsonUtility.ToJson(JsonFileTerrain);
-        File.WriteAllText(Application.persistentDataPath + "/Unity_TerrainSave" + terrainID.ToString() + ".json", json.ToString());
-    }
-    private void Load_Terrain(int terrainID)
-    {
-        string dataPath = Application.persistentDataPath + "/Unity_TerrainSave" + terrainID.ToString() + "json";
-        string dataAsJson = File.ReadAllText(dataPath);
-        JsonFileTerrain = JsonUtility.FromJson<Unity_Assistent_SaveTerrain>(dataAsJson);
     }
 
     void GetComponents(string name)
@@ -630,25 +581,16 @@ public class Unity_Assistent : EditorWindow
                 searchComponentsTag[i] = "Layout";
             }
         }
-    } 
+    }
 }
 
 //GUILayout.Toolbar
 
 class Unity_Assistent_JsonSave
 {
-    public string testString = "SaveFile";
 }
 
-class Unity_Assistent_SaveTerrain
+class Unity_SaveTerrain
 {
-    Unity_Assistent_TerrainInfo[] terrainInfo;
-    
-}
-
-struct Unity_Assistent_TerrainInfo
-{
-    public string sceneID;
-    public string[] terainObjID;
-    public string[] terrainObjectsID;
+    public int[] Terrain_ObjectID;
 }
