@@ -39,11 +39,13 @@ public class Menu : MonoBehaviour
 
     public void QuitGame()
     {
+        Time.timeScale = 1;
         Application.Quit();
     }
 
     public void ResumeGame()
     {
+        Time.timeScale = 1;
         pauzeMenuObj.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
     }

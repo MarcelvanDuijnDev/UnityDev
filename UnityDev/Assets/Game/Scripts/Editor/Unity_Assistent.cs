@@ -280,6 +280,8 @@ public class Unity_Assistent : EditorWindow
 
             //Graphics
             terrainObject.treeDistance = m_TreeDistance;
+
+
         }
 
         object getObjTest = EditorUtility.InstanceIDToObject(-1238);
@@ -322,6 +324,11 @@ public class Unity_Assistent : EditorWindow
         }
         GUI.backgroundColor = new Color(1, 1, 1, 1);
     }
+
+    void CreateScriptebleObject()
+    {
+    }
+        
 
     void getComponent(string componentName)
     {
@@ -594,3 +601,4 @@ class Unity_SaveTerrain
 {
     public int[] Terrain_ObjectID;
 }
+    
