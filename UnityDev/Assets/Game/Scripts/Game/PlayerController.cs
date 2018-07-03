@@ -36,17 +36,37 @@ public class PlayerController : MonoBehaviour {
     //
     CharacterController controller;
 
+    [Header("Watch")]
+    [SerializeField]private GameObject watch;
+    private bool lockPlayer;
+
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         gravityReset = gravity;
-        m_FlashLight.SetActive(true);
         controller = GetComponent<CharacterController>();
     }
 
     void Update() 
     {
+        //Watch
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            if (watch.gameObject.activeSelf)
+            {
+                watch.SetActive(false);
+                lockPlayer = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else
+            {
+                watch.SetActive(true);
+                lockPlayer = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+        }
+
         if (health <= 0)
         {
             Dead();
@@ -92,26 +112,30 @@ public class PlayerController : MonoBehaviour {
             thirdperson_Camera.SetActive(true);
         }
 
-        //Look around
-        rotationX += Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
-        rotationY += Input.GetAxis("Mouse Y") * cameraSensitivity * Time.deltaTime;
-        rotationX += Input.GetAxis("RightJoystickHorizontal") * cameraSensitivity * Time.deltaTime;
-        rotationY += -Input.GetAxis("RightJoystickVertical") * cameraSensitivity * Time.deltaTime;
-        rotationY = Mathf.Clamp (rotationY, -90, 90);
+        if (!lockPlayer)
+        {
+            //Look around
+            rotationX += Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
+            rotationY += Input.GetAxis("Mouse Y") * cameraSensitivity * Time.deltaTime;
+            rotationX += Input.GetAxis("RightJoystickHorizontal") * cameraSensitivity * Time.deltaTime;
+            rotationY += -Input.GetAxis("RightJoystickVertical") * cameraSensitivity * Time.deltaTime;
+            rotationY = Mathf.Clamp(rotationY, -90, 90);
 
-        transform.localRotation = Quaternion.AngleAxis(rotationX, Vector3.up);
-        head.transform.localRotation = Quaternion.AngleAxis(rotationY, Vector3.left);
+            transform.localRotation = Quaternion.AngleAxis(rotationX, Vector3.up);
+            head.transform.localRotation = Quaternion.AngleAxis(rotationY, Vector3.left);
 
-        //Movement
-        if (controller.isGrounded) {
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection *= speed;
-            if (Input.GetButton("Jump") || Input.GetButton("AButton"))
-                moveDirection.y = jumpSpeed + m_JumpHeight_Upgrade;
+            //Movement
+            if (controller.isGrounded)
+            {
+                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                moveDirection = transform.TransformDirection(moveDirection);
+                moveDirection *= speed;
+                if (Input.GetButton("Jump") || Input.GetButton("AButton"))
+                    moveDirection.y = jumpSpeed + m_JumpHeight_Upgrade;
+            }
+            moveDirection.y -= gravity * Time.deltaTime;
+            controller.Move(moveDirection * Time.deltaTime);
         }
-        moveDirection.y -= gravity * Time.deltaTime;
-        controller.Move(moveDirection * Time.deltaTime);
 
 
         //Sprint

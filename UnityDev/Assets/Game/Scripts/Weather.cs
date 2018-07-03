@@ -32,8 +32,6 @@ public class Weather : MonoBehaviour
         daysNeeded[9] = 31;
         daysNeeded[10] = 30;
         daysNeeded[11] = 31;
-        date.y = 1;
-
     }
 
     void Update()
@@ -67,7 +65,7 @@ public class Weather : MonoBehaviour
             m_TimePassed = 0;
             date.x += 1;
         }
-        if (date.x >= daysNeeded[date.y -1])
+        if (date.x >= daysNeeded[date.y])
         {
             date.x = 1;
             date.y += 1;

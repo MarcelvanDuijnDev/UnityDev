@@ -103,9 +103,9 @@ public class PlayerStats : MonoBehaviour
         JsonDataScript.perks = new string[3];
         JsonDataScript.perkXP = new float[3];
         JsonDataScript.perkLevel = new int[3];
-        JsonDataScript.perks[0] = "Commando";
-        JsonDataScript.perks[1] = "Swat";
-        JsonDataScript.perks[2] = "GunSlinger";
+        JsonDataScript.perks[0] = "Name1";
+        JsonDataScript.perks[1] = "Name2";
+        JsonDataScript.perks[2] = "Name3";
         Save();
     }
 }
