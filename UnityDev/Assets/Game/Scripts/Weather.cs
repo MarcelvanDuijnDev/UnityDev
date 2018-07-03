@@ -77,7 +77,7 @@ public class Weather : MonoBehaviour
             date.z += 1;
         }
             
-        Debug.Log("Speed: " + m_Speed + "  ||  " + "Time: " + m_TimePassed + "  ||  " + m_TimePassed * m_Speed );
+        //Debug.Log("Speed: " + m_Speed + "  ||  " + "Time: " + m_TimePassed + "  ||  " + m_TimePassed * m_Speed );
        
     }
 }

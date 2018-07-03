@@ -50,6 +50,16 @@ public class PlayerController : MonoBehaviour {
 
     void Update() 
     {
+        if(Input.GetKey(KeyCode.O))
+        {
+            Time.timeScale -= 0.1f;
+        }
+        if (Input.GetKey(KeyCode.P))
+        {
+            Time.timeScale += 0.1f;
+        }
+        Debug.Log(Time.timeScale);
+
         //Watch
         if(Input.GetKeyDown(KeyCode.Q))
         {

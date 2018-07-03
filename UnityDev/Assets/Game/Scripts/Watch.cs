@@ -30,15 +30,6 @@ public class Watch : MonoBehaviour
         dateText.text = dateString;
         timeString = weatherScript.time.x.ToString("F0") + ":" + weatherScript.time.y.ToString("F0") + ":" + weatherScript.time.z.ToString("F0");
         timeText.text = timeString;
-
-        if(Input.GetKeyDown(KeyCode.Less))
-        {
-            Time.timeScale -= 0.1f;
-        }
-        if (Input.GetKeyDown(KeyCode.Greater))
-        {
-            Time.timeScale += 0.1f;
-        }
     }
 
     public void ClickOnButton(int screenID)
