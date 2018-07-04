@@ -8,10 +8,11 @@ public class Tree : MonoBehaviour
     [SerializeField]private GameObject[] treeObjects;
     [SerializeField]private float treeHealth;
     private float timer;
+    private bool cutDown;
 
 	void Start () 
     {
-        timer = 10;
+        timer = 2;
 	}
 	
 	void Update () 
@@ -20,19 +21,25 @@ public class Tree : MonoBehaviour
         if (treeHealth <= 0)
         {
             timer -= 1 * Time.deltaTime;
-
-            if (timer <= 0)
+            cutDown = true;
+        }
+        if(cutDown)
+        {
+            if (treeObj != null)
             {
                 if (treeObj.GetComponent<Rigidbody>() == null)
                 {
                     treeObj.AddComponent<Rigidbody>();
-                    for (int i = 0; i < treeObjects.Length; i++)
-                    {
-                        treeObjects[i].transform.parent = treeObj.transform;
-                        treeObjects[i].SetActive(true);
-                    }
-                    Destroy(treeObj);
                 }
+            }
+            if (timer <= 0)
+            {
+                for (int i = 0; i < treeObjects.Length; i++)
+                {
+                    treeObjects[i].transform.parent = this.gameObject.transform;
+                    treeObjects[i].SetActive(true);
+                }
+                Destroy(treeObj);
             }
         }
 	}

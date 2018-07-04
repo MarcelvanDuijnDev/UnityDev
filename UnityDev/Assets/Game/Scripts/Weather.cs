@@ -15,6 +15,8 @@ public class Weather : MonoBehaviour
 
     void Start()
     {
+        date = new Vector3Int(12,6,1674);
+        time = new Vector3(6,0,0);
         //Get Light
         m_SunLight = sunObj.GetComponent<Light>();
 

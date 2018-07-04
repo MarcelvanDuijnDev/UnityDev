@@ -8,6 +8,7 @@ public class OptionMenu : MonoBehaviour
     Settings settingsScript;
     [SerializeField]private Dropdown m_GeneralSettings;
     [SerializeField]private Dropdown m_QualitySettings;
+    [SerializeField]private Toggle m_FullScreen;
     [SerializeField]private Toggle m_DepthOfField;
     [SerializeField]private Toggle m_MotionBlur;
     [SerializeField]private Toggle m_Bloom;
@@ -23,6 +24,7 @@ public class OptionMenu : MonoBehaviour
 	void Update ()
     {
         settingsScript.JsonDataScript.graphics = m_QualitySettings.value;
+        settingsScript.JsonDataScript.fullscreen = m_FullScreen.isOn;
         settingsScript.JsonDataScript.depthOfField = m_DepthOfField.isOn;
         settingsScript.JsonDataScript.motionBlur = m_MotionBlur.isOn;
         settingsScript.JsonDataScript.bloom = m_Bloom.isOn;
@@ -34,6 +36,7 @@ public class OptionMenu : MonoBehaviour
     void GetData()
     {
         m_QualitySettings.value = settingsScript.JsonDataScript.graphics;
+        m_FullScreen.isOn = settingsScript.JsonDataScript.fullscreen;
         m_DepthOfField.isOn = settingsScript.JsonDataScript.depthOfField;
         m_MotionBlur.isOn = settingsScript.JsonDataScript.motionBlur;
         m_Bloom.isOn = settingsScript.JsonDataScript.bloom;
