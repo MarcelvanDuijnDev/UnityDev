@@ -13,7 +13,7 @@ public class PlayerStatsCurrentGame : MonoBehaviour
     private WaveHandler waveHandlerScript;
     [SerializeField]private Text healthText, armorText;
     [SerializeField]private Text moneyText, killsText;
-    [SerializeField]private Text playerPerkLevel, playerCurrentPerkName;
+    [SerializeField]private Text playerPerkLevel, playerName;
     [SerializeField]private Text weaponName, weaponAmmo, weaponClip;
     [SerializeField]private Text waveText, waveAmountText;
     [SerializeField]private Text cooldownText;
@@ -38,7 +38,7 @@ public class PlayerStatsCurrentGame : MonoBehaviour
         moneyText.text = "$: " + money.ToString();
         killsText.text = "Kills: " + kills.ToString();
         playerPerkLevel.text = "PerkLevel: " + playerScript.perkLevel[currentPerk].ToString();
-        playerCurrentPerkName.text = playerScript.currentPerkName.ToString();
+        playerName.text = playerScript.currentPerkName.ToString();
 
        // weaponName.text = "" + weaponScript.nameGun;
         //weaponAmmo.text = "Ammo: " + weaponScript.currentAmmo + " / " + weaponScript.maxAmmo;

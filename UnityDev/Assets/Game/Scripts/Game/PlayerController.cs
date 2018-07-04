@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour {
         }
         Debug.Log(Time.timeScale);
 
-        //Watch
+        //Items
         if(Input.GetKeyDown(KeyCode.Q))
         {
             if (watch.gameObject.activeSelf)
@@ -75,6 +75,10 @@ public class PlayerController : MonoBehaviour {
                 lockPlayer = true;
                 Cursor.lockState = CursorLockMode.None;
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+
         }
 
         if (health <= 0)
