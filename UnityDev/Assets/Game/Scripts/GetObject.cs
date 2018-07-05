@@ -14,6 +14,8 @@ public class GetObject : MonoBehaviour
     private bool m_Active;
     private string m_PickupInfo;
 
+    [HideInInspector]public bool hasLog;
+
     private PlayerController m_PlayerScript;
     private Inventory m_InventoryScript;
     private Weather m_WeatherScript;
@@ -61,6 +63,10 @@ public class GetObject : MonoBehaviour
                         m_UIObjectExtra.SetActive(true);
                         m_PickupTextExtra.text = "Press Z to Sleep";
                     }
+                    if (m_PickupInfo == "Blueprint")
+                    {
+                        m_PickupText.text = "Press E to Build";
+                    }
                 }
                 else
                 {
@@ -78,6 +84,7 @@ public class GetObject : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
             otherObj = null;
+            hasLog = false;
         }
         if (m_Active)
         {
@@ -87,6 +94,7 @@ public class GetObject : MonoBehaviour
                 if (m_PickupInfo == "Log")
                 {
                     otherObj = hit.transform.gameObject;
+                    hasLog = true;
                 }
                 if (m_PickupInfo == "Stick")
                 {
@@ -110,6 +118,36 @@ public class GetObject : MonoBehaviour
                 {
 
                 }
+                if (m_PickupInfo == "Blueprint")
+                {
+                    Debug.Log("Interact");
+                    BluePrint m_BlueprintScript = hit.transform.gameObject.GetComponent<BluePrint>();
+                    if (!m_BlueprintScript.gotLogs)
+                    {
+                        if (m_InventoryScript.hasLog)
+                        {
+                            m_InventoryScript.RemoveLog();
+                            m_BlueprintScript.AddLog();
+                        }
+                    }
+                    if (!m_BlueprintScript.gotSticks)
+                    {
+                        if (m_InventoryScript.stick >= 1)
+                        {
+                            m_BlueprintScript.AddStick();
+                            m_InventoryScript.stick -= 1;
+                        }
+                    }
+                    if (!m_BlueprintScript.gotRocks)
+                    {
+                        if (m_InventoryScript.rock >= 1)
+                        {
+                            m_BlueprintScript.AddRock();
+                            m_InventoryScript.rock -= 1;
+                        }
+                    }
+                }
+
             }
             if (Input.GetKeyDown(KeyCode.Z))
             {
@@ -126,5 +164,12 @@ public class GetObject : MonoBehaviour
             otherObj.transform.position = m_HoldItem.transform.position;
         }
 
+    }
+
+    public void RemoveLog()
+    {
+        hasLog = false;
+        otherObj.SetActive(false);
+        otherObj = null;
     }
 }

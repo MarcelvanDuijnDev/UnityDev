@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildManager : MonoBehaviour {
+public class BuildManager : MonoBehaviour 
+{
+    public float logNeeded, sticksNeeded, rocksNeeded;
 
-	// Use this for initialization
-	void Start () {
+	void Start () 
+    {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
 		
 	}
 }
