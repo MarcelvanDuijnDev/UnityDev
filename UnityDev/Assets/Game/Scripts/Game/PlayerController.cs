@@ -5,18 +5,26 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     //Health
-    public float health, armor;
+    [Header("Player Stats")]
+    public float health;
+    public float armor, thirst, hunger;
+    [SerializeField]private float m_ThirstDecreaseRate, m_HungerDecreaseRate;
     [SerializeField]private float maxHealth, maxArmor;
     //Movement
-    public float normalSpeed, sprintSpeed;
+    [Header("Movement")]
+    public float normalSpeed;
+    public float sprintSpeed;
     [SerializeField]private float jumpSpeed;
     [SerializeField]private float gravity;
     private float gravityReset;
-    [SerializeField]private GameObject fps_camera, thirdperson_Camera;
+    [Header("Camera's")]
+    [SerializeField]private GameObject fps_camera;
+    [SerializeField]private GameObject thirdperson_Camera;
     [SerializeField]private GameObject m_FlashLight;
     private bool camera_Perspective;
     private Vector3 moveDirection = Vector3.zero;
     //Look around
+    [Header("Camera Settings")]
     public float cameraSensitivity;
     [SerializeField]private Transform head,cameraObj;
     private bool headMode;
@@ -50,16 +58,6 @@ public class PlayerController : MonoBehaviour {
 
     void Update() 
     {
-        if(Input.GetKey(KeyCode.O))
-        {
-            Time.timeScale -= 0.1f;
-        }
-        if (Input.GetKey(KeyCode.P))
-        {
-            Time.timeScale += 0.1f;
-        }
-        Debug.Log(Time.timeScale);
-
         //Items
         if(Input.GetKeyDown(KeyCode.Q))
         {
@@ -83,7 +81,7 @@ public class PlayerController : MonoBehaviour {
 
         if (health <= 0)
         {
-            Dead();
+            Debug.Log("dead");
         }
         if (health <= maxHealth)
         {
@@ -128,7 +126,7 @@ public class PlayerController : MonoBehaviour {
 
         if (!lockPlayer)
         {
-            //Look around
+            //Rotation
             rotationX += Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
             rotationY += Input.GetAxis("Mouse Y") * cameraSensitivity * Time.deltaTime;
             rotationX += Input.GetAxis("RightJoystickHorizontal") * cameraSensitivity * Time.deltaTime;
@@ -166,6 +164,10 @@ public class PlayerController : MonoBehaviour {
         maxArmor = 100 + m_Armor_Upgrade;
         jumpSpeed = 8 + m_JumpHeight_Upgrade;
 
+        //Thirst / Hunger
+        thirst -= m_ThirstDecreaseRate * Time.deltaTime;
+        hunger -= m_HungerDecreaseRate * Time.deltaTime;
+
     }
 
     public void SetValues(float setPlayerSpeed, float setSprintSpeed)
@@ -187,16 +189,6 @@ public class PlayerController : MonoBehaviour {
             health -= damage;
             armor = 0;
         }
-        if(health <= 0)
-        {
-            Dead();
-        }
-    }
-
-    private void Dead()
-    {
-        GameObject systemObj = GameObject.Find("System");
-        systemObj.GetComponent<ScoreBoard>().Dead(0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -271,6 +263,24 @@ public class PlayerController : MonoBehaviour {
         Weapon weaponScript = this.gameObject.GetComponentInChildren<Weapon>();
         weaponScript.currentAmmo += amount;
         otherObj.gameObject.SetActive(false);
+    }
+
+    public void AddThirst(float amount)
+    {
+        thirst += amount;
+        if(thirst > 100)
+        {
+            thirst = 100;
+        }
+    }
+
+    public void AddHunger(float amount)
+    {
+        hunger += amount;
+        if(hunger > 100)
+        {
+            hunger = 100;
+        }
     }
 
     public void Upgrade(float healhtUpgrade,float armorUpgrade,float healthRegenUpgrade ,float normalSpeedUpgrade,float sprintSpeedUpgrade,float jumpHeightUpgrade)

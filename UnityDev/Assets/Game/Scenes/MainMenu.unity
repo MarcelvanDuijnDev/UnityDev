@@ -20526,7 +20526,6 @@ GameObject:
   - component: {fileID: 1305483468}
   - component: {fileID: 1305483472}
   - component: {fileID: 1305483471}
-  - component: {fileID: 1305483470}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -20599,20 +20598,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac081af10dfb984997a354aba5439cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1305483470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1305483464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5de7b53317f15be4885a8b340006ef98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jsonScript: []
-  save: 0
-  reset: 0
 --- !u!114 &1305483471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20625,15 +20610,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMenu: 1
-  lastPerk: 0
-  perkLevel: 0000000000000000000000000000000000000000
-  xpNeeded:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  currentPerkName: 
 --- !u!114 &1305483472
 MonoBehaviour:
   m_ObjectHideFlags: 0

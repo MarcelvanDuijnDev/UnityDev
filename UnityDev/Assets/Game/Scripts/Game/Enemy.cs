@@ -41,9 +41,7 @@ public class Enemy : MonoBehaviour
         PlayerStatsCurrentGame playerScript = systemObj.GetComponent<PlayerStatsCurrentGame>();
         playerScript.AddMoney(100);
         playerScript.AddKill();
-        playerScript.AddXP(50);
         deadActivate = true;
-        //this.gameObject.SetActive(false);
         this.gameObject.GetComponent<EnemyMovementTest>().dead = true;
     }
 

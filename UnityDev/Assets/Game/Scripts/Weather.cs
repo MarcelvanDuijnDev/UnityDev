@@ -12,11 +12,13 @@ public class Weather : MonoBehaviour
 
     [HideInInspector]public Vector3Int date;
     [HideInInspector]public Vector3 time;
+    private bool sleep;
 
     void Start()
     {
         date = new Vector3Int(12,6,1674);
-        time = new Vector3(6,0,0);
+        time = new Vector3(0,0,0);
+        m_TimePassed = 0;//21300;
         //Get Light
         m_SunLight = sunObj.GetComponent<Light>();
 
@@ -34,6 +36,8 @@ public class Weather : MonoBehaviour
         daysNeeded[9] = 31;
         daysNeeded[10] = 30;
         daysNeeded[11] = 31;
+
+        m_Speed = 0.0041666f;
     }
 
     void Update()
@@ -41,7 +45,6 @@ public class Weather : MonoBehaviour
         //SetTime + speed
         m_TotalTime = setTime.x * 60 * 60 + setTime.y * 60 + setTime.z;
         m_TimeSpeed = 86400 / m_TotalTime;
-        m_Speed = 0.0041666f;
         //Check Seconds Passed + Rotation
         m_TimePassed += m_TimeSpeed * Time.deltaTime;
         float test = m_TimePassed * m_Speed;
@@ -81,5 +84,15 @@ public class Weather : MonoBehaviour
             
         //Debug.Log("Speed: " + m_Speed + "  ||  " + "Time: " + m_TimePassed + "  ||  " + m_TimePassed * m_Speed );
        
+        if(sleep)
+        {
+
+        }
+
+    }
+
+    public void Sleep(float sleepAmount)
+    {
+        sleep = true;
     }
 }

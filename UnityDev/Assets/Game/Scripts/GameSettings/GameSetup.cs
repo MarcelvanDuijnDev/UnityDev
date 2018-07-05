@@ -6,16 +6,13 @@ using UnityEngine;
 
 public class GameSetup : MonoBehaviour 
 {
-    PlayerStats playerStatsScript;
+    SaveGame saveGameScript;
     Settings settingsScript;
-    ScoreBoard scoreBoardScript;
 
 	void Start () 
     {
-        playerStatsScript = this.gameObject.GetComponent<PlayerStats>();
+        saveGameScript = this.gameObject.GetComponent<SaveGame>();
         settingsScript = this.gameObject.GetComponent<Settings>();
-        scoreBoardScript = this.gameObject.GetComponent<ScoreBoard>();
-
         LoadData();
     }
 
@@ -37,27 +34,14 @@ public class GameSetup : MonoBehaviour
         //PlayerStats
         try
         {
-            string dataPath = Application.persistentDataPath + "/PlayerStats.json";
+            string dataPath = Application.persistentDataPath + "/SaveGame.json";
             string dataAsJson = File.ReadAllText(dataPath);
-            Debug.Log("PlayerStats.json Found");
+            Debug.Log("SaveGame.json Found");
         }
         catch
         {
-            Debug.Log("PlayerStats.json Created");
-            playerStatsScript.CreateFile();
-            SceneManager.LoadScene(0);
-        }
-        //ScoreBoard
-        try
-        {
-            string dataPath = Application.persistentDataPath + "/Score.json";
-            string dataAsJson = File.ReadAllText(dataPath);
-            Debug.Log("Score.json Found");
-        }
-        catch
-        {
-            Debug.Log("Score.json Created");
-            scoreBoardScript.CreateFile();
+            Debug.Log("SaveGame.json Created");
+            saveGameScript.CreateFile();
             SceneManager.LoadScene(0);
         }
     }

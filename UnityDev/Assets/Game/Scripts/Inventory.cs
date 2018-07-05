@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pickupp : MonoBehaviour
+public class Inventory : MonoBehaviour
 {
-    public string type;
-    public float amount;
+    public float rock, stick;
 
 	void Start ()
     {
