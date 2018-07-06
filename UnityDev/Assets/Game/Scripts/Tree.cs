@@ -9,6 +9,7 @@ public class Tree : MonoBehaviour
     [SerializeField]private float treeHealth;
     private float timer;
     private bool cutDown;
+    private bool end;
 
 	void Start () 
     {
@@ -17,13 +18,12 @@ public class Tree : MonoBehaviour
 	
 	void Update () 
     {
-		
         if (treeHealth <= 0)
         {
             timer -= 1 * Time.deltaTime;
             cutDown = true;
         }
-        if(cutDown)
+        if(cutDown && !end)
         {
             if (treeObj != null)
             {
@@ -40,7 +40,13 @@ public class Tree : MonoBehaviour
                     treeObjects[i].SetActive(true);
                 }
                 Destroy(treeObj);
+                end = true;
             }
         }
 	}
+
+    public void DoDamage(float amount)
+    {
+        treeHealth -= amount;
+    }
 }

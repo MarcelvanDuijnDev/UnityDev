@@ -7,12 +7,11 @@ public class BluePrint : MonoBehaviour
     [Header("Needed")]
     public float stick;
     public float rock, log;
-    [Header("Got")]
-    [SerializeField]private float m_Sticks;
-    [SerializeField]private float m_Rocks, m_Logs;
 
-    [HideInInspector]
-    public bool gotSticks, gotRocks, gotLogs;
+    //Got
+    private float m_Sticks, m_Rocks, m_Logs;
+
+    [HideInInspector]public bool gotSticks, gotRocks, gotLogs;
 
     [Header("Build BluePrint")]
     [SerializeField]private GameObject[] m_Build_Sticks;
@@ -46,6 +45,28 @@ public class BluePrint : MonoBehaviour
         if (rock == m_Rocks)
         {
             gotRocks = true;
+        }
+
+        if(gotLogs && gotSticks && gotRocks)
+        {
+            if(this.gameObject.GetComponent<BoxCollider>() != null)
+            {
+                this.gameObject.GetComponent<BoxCollider>().enabled = false;
+            }
+            for (int i = 0; i < m_Build_LogsFinal.Length; i++)
+            {
+                if (m_Build_LogsFinal[i].GetComponent<Pickupp>() == null)
+                {
+                    m_Build_LogsFinal[i].AddComponent<Pickupp>().type = "House";
+                }
+            }
+            for (int i = 0; i < m_Build_SticksFinal.Length; i++)
+            {
+                if(m_Build_SticksFinal[i].GetComponent<Pickupp>() == null)
+                {
+                    m_Build_SticksFinal[i].AddComponent<Pickupp>().type = "House";
+                }
+            }
         }
 	}
 

@@ -159,17 +159,26 @@ public class GetObject : MonoBehaviour
             m_UIObject.SetActive(false);
         }
 
+        //Interact Trees
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (m_PlayerScript.m_ToolSelected == 0 && hit.transform.parent.parent.gameObject.GetComponent<Tree>() != null)
+            {
+                hit.transform.parent.parent.gameObject.GetComponent<Tree>().DoDamage(25);
+            }
+        }
+
         if (otherObj != null)
         {
             otherObj.transform.position = m_HoldItem.transform.position;
         }
-
     }
 
     public void RemoveLog()
     {
-        hasLog = false;
+        Debug.Log(otherObj);
         otherObj.SetActive(false);
-        otherObj = null;
+        hasLog = false;
+        //otherObj = null;
     }
 }

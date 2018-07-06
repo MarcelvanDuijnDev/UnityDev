@@ -44,6 +44,10 @@ public class PlayerController : MonoBehaviour {
     //
     CharacterController controller;
 
+    [Header("Tools")]
+    [SerializeField]private GameObject m_Exe;
+    [HideInInspector]public int m_ToolSelected;
+
     [Header("Watch")]
     [SerializeField]private GameObject watch;
     private bool lockPlayer;
@@ -72,11 +76,28 @@ public class PlayerController : MonoBehaviour {
                 watch.SetActive(true);
                 lockPlayer = true;
                 Cursor.lockState = CursorLockMode.None;
+                m_ToolSelected = 0;
+                if (m_Exe.gameObject.activeSelf)
+                {
+                    m_Exe.SetActive(false);
+                }
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-
+            watch.SetActive(false);
+            lockPlayer = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            if (m_Exe.gameObject.activeSelf)
+            {
+                m_Exe.SetActive(false);
+                m_ToolSelected = 0;
+            }
+            else
+            {
+                m_Exe.SetActive(true);
+                m_ToolSelected = 1;
+            }
         }
 
         if (health <= 0)
