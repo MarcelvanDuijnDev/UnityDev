@@ -1,0 +1,364 @@
+fileFormatVersion: 2
+guid: c2a8cd306a7f7004ab46c2243b6ef538
+timeCreated: 1531773686
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Balloon
+    100002: Boat3
+    100004: Gear1
+    100006: Gear10
+    100008: Gear11
+    100010: Gear2
+    100012: Gear3
+    100014: Gear4
+    100016: Gear5
+    100018: Gear6
+    100020: Gear7
+    100022: Gear8
+    100024: Gear9
+    100026: MiddleGear
+    100028: pCube10
+    100030: pCube10 1
+    100032: pCube11
+    100034: pCube11 1
+    100036: pCube12
+    100038: pCube12 1
+    100040: pCube13
+    100042: pCube13 1
+    100044: pCube14
+    100046: pCube14 1
+    100048: pCube16
+    100050: pCube18
+    100052: pCube19
+    100054: pCube20
+    100056: pCube21
+    100058: pCube22
+    100060: pCube23
+    100062: pCube24
+    100064: pCube25
+    100066: pCube26
+    100068: pCube27
+    100070: pCube8
+    100072: pCube8 1
+    100074: pCube9
+    100076: pCube9 1
+    100078: pCylinder1
+    100080: pCylinder3
+    100082: pPlane1
+    100084: pPlane2
+    100086: pPlane3
+    100088: pPlane4
+    100090: pPlane5
+    100092: pPlane6
+    100094: pPlane7
+    100096: pPlane8
+    100098: Rope1
+    100100: Rope2
+    100102: Rope3
+    100104: Rope4
+    100106: //RootNode
+    100108: Stairs
+    100110: Stairs1
+    100112: transform1
+    100114: transform2
+    100116: Wheel
+    400000: Balloon
+    400002: Boat3
+    400004: Gear1
+    400006: Gear10
+    400008: Gear11
+    400010: Gear2
+    400012: Gear3
+    400014: Gear4
+    400016: Gear5
+    400018: Gear6
+    400020: Gear7
+    400022: Gear8
+    400024: Gear9
+    400026: MiddleGear
+    400028: pCube10
+    400030: pCube10 1
+    400032: pCube11
+    400034: pCube11 1
+    400036: pCube12
+    400038: pCube12 1
+    400040: pCube13
+    400042: pCube13 1
+    400044: pCube14
+    400046: pCube14 1
+    400048: pCube16
+    400050: pCube18
+    400052: pCube19
+    400054: pCube20
+    400056: pCube21
+    400058: pCube22
+    400060: pCube23
+    400062: pCube24
+    400064: pCube25
+    400066: pCube26
+    400068: pCube27
+    400070: pCube8
+    400072: pCube8 1
+    400074: pCube9
+    400076: pCube9 1
+    400078: pCylinder1
+    400080: pCylinder3
+    400082: pPlane1
+    400084: pPlane2
+    400086: pPlane3
+    400088: pPlane4
+    400090: pPlane5
+    400092: pPlane6
+    400094: pPlane7
+    400096: pPlane8
+    400098: Rope1
+    400100: Rope2
+    400102: Rope3
+    400104: Rope4
+    400106: //RootNode
+    400108: Stairs
+    400110: Stairs1
+    400112: transform1
+    400114: transform2
+    400116: Wheel
+    2100000: Balloon1
+    2100002: lambert1
+    2100004: Default_Material
+    2300000: Balloon
+    2300002: Boat3
+    2300004: Gear1
+    2300006: Gear10
+    2300008: Gear11
+    2300010: Gear2
+    2300012: Gear3
+    2300014: Gear4
+    2300016: Gear5
+    2300018: Gear6
+    2300020: Gear7
+    2300022: Gear8
+    2300024: Gear9
+    2300026: MiddleGear
+    2300028: pCube10
+    2300030: pCube10 1
+    2300032: pCube11
+    2300034: pCube11 1
+    2300036: pCube12
+    2300038: pCube12 1
+    2300040: pCube13
+    2300042: pCube13 1
+    2300044: pCube14
+    2300046: pCube14 1
+    2300048: pCube16
+    2300050: pCube18
+    2300052: pCube19
+    2300054: pCube20
+    2300056: pCube21
+    2300058: pCube22
+    2300060: pCube23
+    2300062: pCube26
+    2300064: pCube27
+    2300066: pCube8
+    2300068: pCube8 1
+    2300070: pCube9
+    2300072: pCube9 1
+    2300074: pCylinder1
+    2300076: pCylinder3
+    2300078: pPlane1
+    2300080: pPlane2
+    2300082: pPlane3
+    2300084: pPlane4
+    2300086: pPlane5
+    2300088: pPlane6
+    2300090: pPlane7
+    2300092: pPlane8
+    2300094: Rope1
+    2300096: Rope2
+    2300098: Rope3
+    2300100: Rope4
+    2300102: Wheel
+    3300000: Balloon
+    3300002: Boat3
+    3300004: Gear1
+    3300006: Gear10
+    3300008: Gear11
+    3300010: Gear2
+    3300012: Gear3
+    3300014: Gear4
+    3300016: Gear5
+    3300018: Gear6
+    3300020: Gear7
+    3300022: Gear8
+    3300024: Gear9
+    3300026: MiddleGear
+    3300028: pCube10
+    3300030: pCube10 1
+    3300032: pCube11
+    3300034: pCube11 1
+    3300036: pCube12
+    3300038: pCube12 1
+    3300040: pCube13
+    3300042: pCube13 1
+    3300044: pCube14
+    3300046: pCube14 1
+    3300048: pCube16
+    3300050: pCube18
+    3300052: pCube19
+    3300054: pCube20
+    3300056: pCube21
+    3300058: pCube22
+    3300060: pCube23
+    3300062: pCube26
+    3300064: pCube27
+    3300066: pCube8
+    3300068: pCube8 1
+    3300070: pCube9
+    3300072: pCube9 1
+    3300074: pCylinder1
+    3300076: pCylinder3
+    3300078: pPlane1
+    3300080: pPlane2
+    3300082: pPlane3
+    3300084: pPlane4
+    3300086: pPlane5
+    3300088: pPlane6
+    3300090: pPlane7
+    3300092: pPlane8
+    3300094: Rope1
+    3300096: Rope2
+    3300098: Rope3
+    3300100: Rope4
+    3300102: Wheel
+    4300000: Balloon
+    4300002: Rope1
+    4300004: Rope2
+    4300006: Rope3
+    4300008: Rope4
+    4300010: MiddleGear
+    4300012: Gear1
+    4300014: pCube16
+    4300016: Gear2
+    4300018: Gear3
+    4300020: pCylinder1
+    4300022: pPlane1
+    4300024: pPlane2
+    4300026: pPlane3
+    4300028: pPlane4
+    4300030: pPlane5
+    4300032: pPlane6
+    4300034: pPlane7
+    4300036: pPlane8
+    4300038: Boat3
+    4300040: pCube14
+    4300042: pCube13
+    4300044: pCube12
+    4300046: pCube8
+    4300048: pCube9
+    4300050: pCube10
+    4300052: pCube11
+    4300054: pCube14
+    4300056: pCube13
+    4300058: pCube12
+    4300060: pCube8
+    4300062: pCube9
+    4300064: pCube10
+    4300066: pCube11
+    4300068: pCube18
+    4300070: pCube19
+    4300072: pCube20
+    4300074: pCube21
+    4300076: pCube22
+    4300078: pCube23
+    4300080: pCylinder3
+    4300082: Gear4
+    4300084: Gear5
+    4300086: Wheel
+    4300088: Gear6
+    4300090: Gear7
+    4300092: Gear8
+    4300094: Gear9
+    4300096: Gear10
+    4300098: pCube26
+    4300100: pCube27
+    4300102: Gear11
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
