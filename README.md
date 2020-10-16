@@ -1,6 +1,6 @@
 # UnityDev
 
-**The Project** <br>
+**This project** <br>
 Old project with random mechanics/minigames.
 
 **Project status: *(oct-2020)*** <br>
