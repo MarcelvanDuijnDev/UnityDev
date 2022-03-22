@@ -162,10 +162,9 @@ public class GetObject : MonoBehaviour
         //Interact Trees
         if (Input.GetMouseButtonDown(0))
         {
-            if (m_PlayerScript.m_ToolSelected == 0 && hit.transform.parent.parent.gameObject.GetComponent<Tree>() != null)
-            {
-                hit.transform.parent.parent.gameObject.GetComponent<Tree>().DoDamage(25);
-            }
+            if (hit.transform.CompareTag("Tree"))
+                if (m_PlayerScript.m_ToolSelected == 0 && hit.transform.parent.parent.gameObject.GetComponent<Tree>() != null)
+                    hit.transform.parent.parent.gameObject.GetComponent<Tree>().DoDamage(25);
         }
 
         if (otherObj != null)
